@@ -49,7 +49,8 @@ jobs:
       # crates.io fall back to `cargo check -p` inside the script (Cargo cannot
       # resolve unpublished versioned path-deps from the index during dry-run).
       - name: cargo publish --dry-run in dependency order
-        run: ./scripts/publish-crates.sh --dry-run
+        # Invoke via bash so a missing git executable bit cannot break CI.
+        run: bash scripts/publish-crates.sh --dry-run
 
   publish-crates:
     name: Publish to crates.io
@@ -76,7 +77,7 @@ jobs:
             echo "CRATES_IO_TOKEN not configured — skipping crates.io publish (GitHub Release still proceeds)."
             exit 0
           fi
-          ./scripts/publish-crates.sh --execute
+          bash scripts/publish-crates.sh --execute
 
   build-binaries:
     name: Cross-Compile CLI & USB Flasher
