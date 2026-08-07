@@ -1,0 +1,24 @@
+//! Chimera Nexus guest API (WASM Component Model).
+//!
+//! Binding generation via wit-bindgen is optional; this WIT is the contract.
+//! Engine hosts may also use the C ABI in `include/chimera_nexus.h`.
+
+package chimera:nexus@0.1.0;
+
+interface realtime {
+  /// Submit a deadline-scoped task; host may run locally if remote misses budget.
+  submit-rt: func(task-id: u64, cost-hint-ns: u64, deadline-ms: u32, local-fallback: list<u8>) -> result<_, string>;
+  /// Advance one simulation/engine frame.
+  tick: func() -> u32;
+}
+
+interface ecs {
+  spawn: func() -> u64;
+  set-transform: func(entity: u64, x: f32, y: f32, z: f32);
+  get-transform: func(entity: u64) -> option<tuple<f32, f32, f32>>;
+}
+
+world engine-embed {
+  export realtime;
+  export ecs;
+}

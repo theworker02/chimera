@@ -1,0 +1,20 @@
+﻿[package]
+name = "chimera-storage-cas"
+version.workspace = true
+edition.workspace = true
+description = "BLAKE3 Merkle content-addressed storage for Chimera"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+
+[dependencies]
+anyhow = "1"
+blake3 = "1"
+hex = "0.4"
+memmap2 = "0.9"
+parking_lot = "0.12"
+postcard = { version = "1", features = ["alloc"] }
+serde = { version = "1", features = ["derive"] }

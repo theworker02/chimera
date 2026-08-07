@@ -1,0 +1,61 @@
+[package]
+name = "chimera-boot"
+description = "Chimera Boot-Sovereign — safety-gated USB flash and recovery engine"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+keywords = ["usb", "gpt", "mbr", "fat32", "boot"]
+categories = ["command-line-utilities", "filesystem", "encoding"]
+
+[lib]
+name = "chimera_boot"
+path = "src/lib.rs"
+
+[[bin]]
+name = "chimera-boot"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+blake3 = "1"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+uuid = { version = "1", features = ["v4", "serde"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = [
+  "Win32_Foundation",
+  "Win32_Storage_FileSystem",
+  "Win32_System_IO",
+  "Win32_System_Ioctl",
+  "Win32_System_SystemServices",
+  "Win32_System_LibraryLoader",
+  "Win32_Security",
+] }
+
+[dev-dependencies]
+tempfile = "3"
+
+# cargo-binstall: matches release.yml artifact names for chimera-boot-*
+[package.metadata.binstall.overrides.x86_64-unknown-linux-gnu]
+pkg-url = "{ repo }/releases/download/v{ version }/chimera-boot-linux-amd64"
+pkg-fmt = "bin"
+[package.metadata.binstall.overrides.aarch64-unknown-linux-gnu]
+pkg-url = "{ repo }/releases/download/v{ version }/chimera-boot-linux-arm64"
+pkg-fmt = "bin"
+[package.metadata.binstall.overrides.x86_64-pc-windows-msvc]
+pkg-url = "{ repo }/releases/download/v{ version }/chimera-boot-windows-amd64.exe"
+pkg-fmt = "bin"
+[package.metadata.binstall.overrides.x86_64-apple-darwin]
+pkg-url = "{ repo }/releases/download/v{ version }/chimera-boot-macos-universal2"
+pkg-fmt = "bin"
+[package.metadata.binstall.overrides.aarch64-apple-darwin]
+pkg-url = "{ repo }/releases/download/v{ version }/chimera-boot-macos-universal2"
+pkg-fmt = "bin"

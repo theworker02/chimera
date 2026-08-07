@@ -1,0 +1,9 @@
+replicaCount: 3
+image:
+  repository: chimera
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+meshId: k8s-mesh
+service:
+  type: ClusterIP
+  port: 7600

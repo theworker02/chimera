@@ -1,0 +1,14 @@
+﻿[package]
+name = "chimera-rbac-auth"
+version.workspace = true
+edition.workspace = true
+description = "Role-based access control for Chimera management APIs"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }

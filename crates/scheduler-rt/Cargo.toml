@@ -1,0 +1,24 @@
+[package]
+name = "chimera-nexus"
+description = "Chimera Nexus — sub-16ms frame-budget scheduler and ECS interop layer"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+keywords = ["realtime", "ecs", "scheduler", "game", "mesh"]
+categories = ["game-engines", "science"]
+
+[lib]
+name = "chimera_nexus"
+crate-type = ["cdylib", "staticlib", "rlib"]
+
+[dependencies]
+blake3 = "1"
+chimera-nano-kernel = { version = "0.1.0", path = "../core-nano", default-features = false, features = ["host"] }
+parking_lot = "0.12"
+serde = { version = "1", features = ["derive"] }
+postcard = { version = "1", features = ["alloc"] }

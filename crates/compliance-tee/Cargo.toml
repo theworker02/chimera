@@ -1,0 +1,18 @@
+﻿[package]
+name = "chimera-compliance-tee"
+version.workspace = true
+edition.workspace = true
+description = "TEE attestation helpers (simulated + hardware stubs) for Chimera"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+
+[dependencies]
+anyhow = "1"
+blake3 = "1"
+ed25519-dalek = { version = "2", features = ["rand_core", "serde"] }
+rand = "0.8"
+serde = { version = "1", features = ["derive"] }

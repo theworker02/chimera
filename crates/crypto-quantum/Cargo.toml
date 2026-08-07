@@ -1,0 +1,14 @@
+﻿[package]
+name = "chimera-crypto-quantum"
+version.workspace = true
+edition.workspace = true
+description = "ML-KEM + ML-DSA post-quantum crypto facade for Chimera"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+
+[dependencies]
+chimera-nano-kernel = { version = "0.1.0", path = "../core-nano", default-features = false, features = ["host", "pq"] }

@@ -1,0 +1,21 @@
+* text=auto
+
+# Shell scripts and Unix-consumed files must keep LF endings: CRLF makes Linux
+# and macOS runners fail with "bad interpreter: no such file or directory".
+*.sh text eol=lf
+Dockerfile text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Windows-native scripts keep CRLF.
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Binary assets are never line-ending converted.
+*.png binary
+*.jpg binary
+*.ico binary
+*.wasm binary
+*.img binary
+*.iso binary

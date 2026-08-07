@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chimera MeshShell</title>
+  <link rel="stylesheet" href="/meshshell/style.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="mark"></span>
+      <div>
+        <h1>MeshShell</h1>
+        <p class="tag">WorldOS workspace · Chimera hypergrid</p>
+      </div>
+    </div>
+    <div class="status" id="nodeStatus">connecting…</div>
+  </header>
+
+  <nav class="tabs">
+    <button data-view="fs" class="active">Filesystem</button>
+    <button data-view="apps">Apps / Freight</button>
+    <button data-view="topo">Topology</button>
+    <button data-view="dash">Sovereign Dash</button>
+    <button data-view="notes">Collab Notes</button>
+  </nav>
+
+  <main>
+    <section id="view-fs" class="view active">
+      <h2>ChimeraFS workspace</h2>
+      <p class="hint">Drag files here to pin into the CAS fabric. Download by hash.</p>
+      <div id="dropzone" class="drop">
+        <p>Drop files to upload · or click to choose</p>
+        <input type="file" id="fileInput" multiple hidden />
+      </div>
+      <ul id="fsList" class="list"></ul>
+    </section>
+
+    <section id="view-apps" class="view">
+      <h2>App launcher · Freight</h2>
+      <div class="row">
+        <input id="freightQuery" placeholder="search packages" />
+        <button id="freightSearch">Search</button>
+        <button id="freightDemo">Publish demo add1</button>
+      </div>
+      <ul id="pkgList" class="list"></ul>
+      <div class="row">
+        <input id="invokeIn" value="29" placeholder="input hex" />
+        <button id="runPkg">Run selected</button>
+      </div>
+      <pre id="runOut" class="out"></pre>
+    </section>
+
+    <section id="view-topo" class="view">
+      <h2>Mesh topology</h2>
+      <pre id="topoOut" class="out"></pre>
+    </section>
+
+    <section id="view-dash" class="view">
+      <h2>Sovereign telemetry</h2>
+      <p class="hint">WebGL topology · glass overlays · live handshake pulse. Vulkan/native display = roadmap.</p>
+      <div class="dash-wrap">
+        <canvas id="glCanvas" width="900" height="480"></canvas>
+        <div class="glass" id="glassHud">
+          <div><span>CPU</span><strong id="hudCpu">—</strong></div>
+          <div><span>Peers</span><strong id="hudPeers">—</strong></div>
+          <div><span>Wire</span><strong id="hudWire">—</strong></div>
+          <div><span>HS</span><strong id="hudHs">idle</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-notes" class="view">
+      <h2>Shared notes (CRDT)</h2>
+      <p class="hint">Live collaborative panel — edits merge over WebSocket.</p>
+      <textarea id="notes" rows="12" placeholder="Type shared notes…"></textarea>
+      <p id="wsState">ws: idle</p>
+    </section>
+  </main>
+
+  <script src="/meshshell/app.js"></script>
+  <script src="/meshshell/dashboard.js"></script>
+</body>
+</html>

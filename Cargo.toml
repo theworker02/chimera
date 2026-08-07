@@ -1,0 +1,166 @@
+[workspace]
+resolver = "2"
+members = [
+  ".",
+  "examples/guest",
+  "crates/core-nano",
+  "crates/transport-quic",
+  "crates/dht-routing",
+  "crates/crypto-quantum",
+  "crates/usb-daemon",
+  "crates/wasm-runtime",
+  "crates/memory-fabric",
+  "crates/storage-cas",
+  "crates/fuser-mount",
+  "crates/consensus-dag",
+  "crates/network-bridge",
+  "crates/agent-swarm",
+  "crates/telemetry-otel",
+  "crates/scheduler-rt",
+  "crates/inference-engine",
+  "crates/compiler-jit",
+  "crates/rbac-auth",
+  "crates/audit-ledger",
+  "crates/compliance-tee",
+  "crates/policy-engine",
+  "crates/cli-tool",
+  "crates/usb-flasher",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+authors = ["Chimera Contributors"]
+repository = "https://github.com/YOUR_ORG/chimera"
+homepage = "https://github.com/YOUR_ORG/chimera"
+rust-version = "1.75"
+
+[package]
+name = "chimera-mesh"
+description = "Chimera mesh node — umbrella composing the Omniverse crate graph"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+keywords = ["p2p", "wasm", "quic", "distributed", "mesh"]
+categories = ["network-programming", "wasm", "command-line-utilities"]
+exclude = [
+  "data/**",
+  "docs/book/**",
+  "target/**",
+  "packages/**",
+  "meshshell/**",
+  "brand/**",
+  "assets/**",
+  "packaging/**",
+  ".github/**",
+]
+
+[package.metadata.docs.rs]
+all-features = false
+
+[lib]
+name = "chimera"
+path = "src/lib.rs"
+
+[[bin]]
+name = "chimera"
+path = "src/main.rs"
+
+[features]
+default = ["cnk", "mgmt", "nexus"]
+fuse = ["fuser-mount/fuse"]
+userfaultfd = ["memory-fabric/userfaultfd"]
+zk-receipts = []
+ml-agent = ["agent-swarm/ml-agent"]
+bridge-serial = ["network-bridge/bridge-serial"]
+bridge-bluetooth = ["network-bridge/bridge-bluetooth"]
+cnk = ["dep:chimera-nano-kernel"]
+nexus = ["dep:chimera-nexus"]
+mgmt = ["dep:axum", "dep:tower", "dep:tower-http"]
+otel = ["telemetry-otel/otel"]
+
+[dependencies]
+anyhow = "1"
+blake3 = "1"
+bytes = "1"
+chrono = { version = "0.4", features = ["serde", "clock"] }
+clap = { version = "4", features = ["derive"] }
+crossterm = "0.28"
+dashmap = "6"
+ed25519-dalek = { version = "2", features = ["rand_core", "serde"] }
+futures-util = "0.3"
+getrandom = "0.2"
+hex = "0.4"
+memmap2 = "0.9"
+parking_lot = "0.12"
+postcard = { version = "1", features = ["alloc"] }
+quinn = "0.11"
+rand = "0.8"
+rand_core = "0.6"
+ratatui = "0.29"
+rcgen = "0.13"
+rustls = { version = "0.23", default-features = false, features = ["ring", "std"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+socket2 = { version = "0.5", features = ["all"] }
+sysinfo = "0.33"
+thiserror = "2"
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+wasmtime = "29"
+
+# Internal crates (dep keys keep short names; published as chimera-*)
+agent-swarm = { version = "0.1.0", path = "crates/agent-swarm", package = "chimera-agent-swarm" }
+audit-ledger = { version = "0.1.0", path = "crates/audit-ledger", package = "chimera-audit-ledger" }
+compiler-jit = { version = "0.1.0", path = "crates/compiler-jit", package = "chimera-compiler-jit" }
+compliance-tee = { version = "0.1.0", path = "crates/compliance-tee", package = "chimera-compliance-tee" }
+consensus-dag = { version = "0.1.0", path = "crates/consensus-dag", package = "chimera-consensus-dag" }
+crypto-quantum = { version = "0.1.0", path = "crates/crypto-quantum", package = "chimera-crypto-quantum" }
+dht-routing = { version = "0.1.0", path = "crates/dht-routing", package = "chimera-dht-routing" }
+fuser-mount = { version = "0.1.0", path = "crates/fuser-mount", package = "chimera-fuser-mount" }
+inference-engine = { version = "0.1.0", path = "crates/inference-engine", package = "chimera-inference-engine" }
+memory-fabric = { version = "0.1.0", path = "crates/memory-fabric", package = "chimera-memory-fabric" }
+network-bridge = { version = "0.1.0", path = "crates/network-bridge", package = "chimera-network-bridge" }
+policy-engine = { version = "0.1.0", path = "crates/policy-engine", package = "chimera-policy-engine" }
+rbac-auth = { version = "0.1.0", path = "crates/rbac-auth", package = "chimera-rbac-auth" }
+storage-cas = { version = "0.1.0", path = "crates/storage-cas", package = "chimera-storage-cas" }
+telemetry-otel = { version = "0.1.0", path = "crates/telemetry-otel", package = "chimera-telemetry-otel" }
+transport-quic = { version = "0.1.0", path = "crates/transport-quic", package = "chimera-transport-quic" }
+wasm-runtime = { version = "0.1.0", path = "crates/wasm-runtime", package = "chimera-wasm-runtime" }
+
+chimera-nano-kernel = { version = "0.1.0", path = "crates/core-nano", optional = true }
+chimera-nexus = { version = "0.1.0", path = "crates/scheduler-rt", optional = true }
+chimera-boot = { version = "0.1.0", path = "crates/usb-flasher" }
+
+axum = { version = "0.8", optional = true, features = ["json", "ws"] }
+tower = { version = "0.5", optional = true }
+tower-http = { version = "0.6", optional = true, features = ["cors", "trace"] }
+
+opentelemetry = { version = "0.27", optional = true }
+opentelemetry_sdk = { version = "0.27", optional = true, features = ["rt-tokio"] }
+opentelemetry-otlp = { version = "0.27", optional = true, features = ["grpc-tonic"] }
+tracing-opentelemetry = { version = "0.28", optional = true }
+
+# Mesh throughput profile (opt-level 3). Used by default for mesh node builds.
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+
+# Size-optimised profile for shipped CLI artifacts (chimeractl, chimera-boot).
+# Kept separate so mesh `release` builds are not degraded by opt-level = "z".
+[profile.dist]
+inherits = "release"
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"

@@ -1,0 +1,193 @@
+name: Chimera Global Release Pipeline
+
+# Triggered only by version tags. workflow_dispatch offers a dry-run rehearsal so
+# the pipeline can be exercised without publishing anything irreversible.
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Rehearse without publishing to crates.io or creating a release"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  # Explicit, CI-safe feature set. `--all-features` is deliberately NOT used:
+  # it activates platform-gated features (fuse, userfaultfd, bridge-serial,
+  # bridge-bluetooth, TEE backends) that cannot build on a generic runner.
+  CI_FEATURES: "cnk,mgmt,nexus"
+
+jobs:
+  validate-and-test:
+    name: Validate Crate Workspace
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Cargo test (CI-safe features)
+        run: cargo test --workspace --no-default-features --features "$CI_FEATURES"
+      - name: Verify no_std nano-kernel still builds bare-metal
+        run: |
+          rustup target add thumbv7em-none-eabihf
+          cargo check -p chimera-nano-kernel --no-default-features --target thumbv7em-none-eabihf
+
+  package-dry-run:
+    name: Verify Crate Packaging
+    needs: validate-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      # Catches missing metadata / packaging mistakes before a real publish.
+      # First-release note: dependents whose workspace path-deps are not yet on
+      # crates.io fall back to `cargo check -p` inside the script (Cargo cannot
+      # resolve unpublished versioned path-deps from the index during dry-run).
+      - name: cargo publish --dry-run in dependency order
+        run: ./scripts/publish-crates.sh --dry-run
+
+  publish-crates:
+    name: Publish to crates.io
+    needs: [validate-and-test, package-dry-run]
+    if: startsWith(github.ref, 'refs/tags/v') && inputs.dry_run != true
+    runs-on: ubuntu-latest
+    environment: crates-io
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      # Dependent crates cannot be published back-to-back: the crates.io index
+      # needs time to expose each new version. The script waits for the index to
+      # serve each crate before publishing anything that depends on it.
+      - name: Publish in topological order (with index propagation waits)
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+        run: ./scripts/publish-crates.sh --execute
+
+  build-binaries:
+    name: Cross-Compile CLI & USB Flasher
+    needs: validate-and-test
+    permissions:
+      contents: write # required by action-gh-release to upload assets
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+            slug: linux-amd64
+          - target: aarch64-unknown-linux-gnu
+            os: ubuntu-latest
+            slug: linux-arm64
+            cross: true
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+            slug: windows-amd64
+          # macOS is built as a universal2 binary by lipo-merging both arches.
+          - target: universal2-apple-darwin
+            os: macos-latest
+            slug: macos-universal2
+            universal: true
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.universal && 'x86_64-apple-darwin,aarch64-apple-darwin' || matrix.target }}
+
+      - name: Set up cross toolchain
+        if: matrix.cross
+        uses: taiki-e/setup-cross-toolchain-action@v1
+        with:
+          target: ${{ matrix.target }}
+
+      # Uses the `dist` profile rather than `release`: size-optimised settings
+      # (opt-level = "z") are appropriate for shipped CLI artifacts but would
+      # degrade throughput for the compute mesh, so `release` stays at opt-level 3.
+      - name: Build (single arch)
+        if: '!matrix.universal'
+        run: cargo build --profile dist --target ${{ matrix.target }} -p chimeractl -p chimera-boot
+
+      - name: Build and merge (macOS universal2)
+        if: matrix.universal
+        run: |
+          for arch in x86_64 aarch64; do
+            cargo build --profile dist --target "${arch}-apple-darwin" -p chimeractl -p chimera-boot
+          done
+          mkdir -p target/universal2-apple-darwin/dist
+          for bin in chimeractl chimera-boot; do
+            lipo -create -output "target/universal2-apple-darwin/dist/${bin}" \
+              "target/x86_64-apple-darwin/dist/${bin}" \
+              "target/aarch64-apple-darwin/dist/${bin}"
+          done
+
+      - name: Install b3sum
+        shell: bash
+        run: cargo install b3sum --locked
+
+      - name: Stage artifacts and checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          ext=""
+          [[ "${{ matrix.os }}" == "windows-latest" ]] && ext=".exe"
+          # macOS ships `shasum` rather than GNU coreutils' `sha256sum`.
+          if command -v sha256sum >/dev/null; then
+            sha256() { sha256sum "$1"; }
+          else
+            sha256() { shasum -a 256 "$1"; }
+          fi
+          for bin in chimeractl chimera-boot; do
+            src="target/${{ matrix.target }}/dist/${bin}${ext}"
+            dest="dist/${bin}-${{ matrix.slug }}${ext}"
+            cp "$src" "$dest"
+            # Both digests are published: SHA256 for ecosystem tooling
+            # (Homebrew, binstall) and BLAKE3 to match Chimera's internal CAS.
+            sha256 "$dest" > "${dest}.sha256"
+            b3sum "$dest" > "${dest}.blake3"
+          done
+
+      - name: Upload release artifacts
+        if: startsWith(github.ref, 'refs/tags/v') && inputs.dry_run != true
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*
+          fail_on_unmatched_files: true
+
+  deploy-docs:
+    name: Deploy GitHub Pages Documentation
+    needs: validate-and-test
+    runs-on: ubuntu-latest
+    # Uses the official Pages deployment path exclusively. The earlier draft
+    # mixed these permissions with peaceiris/actions-gh-pages, which instead
+    # pushes to a branch using a token — the two approaches are incompatible.
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: peaceiris/actions-mdbook@v2
+        with:
+          mdbook-version: "0.4.40"
+      - name: Build documentation
+        run: mdbook build docs/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/book
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,14 @@
+﻿[package]
+name = "chimera-inference-engine"
+version.workspace = true
+edition.workspace = true
+description = "Lightweight statistical anomaly detector for Chimera"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }

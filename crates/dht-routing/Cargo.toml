@@ -1,0 +1,18 @@
+﻿[package]
+name = "chimera-dht-routing"
+version.workspace = true
+edition.workspace = true
+description = "S/Kademlia DHT and service registry routing for Chimera"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+
+[dependencies]
+transport-quic = { version = "0.1.0", path = "../transport-quic", package = "chimera-transport-quic" }
+parking_lot = "0.12"
+serde = { version = "1", features = ["derive"] }
+blake3 = "1"
+uuid = { version = "1", features = ["v4"] }

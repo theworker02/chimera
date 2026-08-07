@@ -1,0 +1,17 @@
+/target
+**/target
+/data
+**/*.ckpt
+.DS_Store
+*.pdb
+.idea
+.vscode
+docs/book/
+
+# Credential and local state files must never be committed.
+.npmrc
+.pypirc
+credentials
+credentials.bak
+*.pem
+*.key

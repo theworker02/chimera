@@ -1,0 +1,49 @@
+# 3-node local mesh (untested on this host — Docker not available).
+services:
+  alpha:
+    build: .
+    command:
+      - --name=alpha
+      - --tcp-bind=0.0.0.0:7400
+      - --quic-bind=0.0.0.0:7401
+      - --mgmt-bind=0.0.0.0:7600
+      - --demo-slices=2
+      - --no-tui
+      - --mesh-id=compose-mesh
+    ports:
+      - "7600:7600"
+      - "7400:7400"
+      - "7401:7401"
+    volumes:
+      - alpha-data:/data
+  beta:
+    build: .
+    command:
+      - --name=beta
+      - --tcp-bind=0.0.0.0:7402
+      - --quic-bind=0.0.0.0:7403
+      - --mgmt-bind=0.0.0.0:7601
+      - --no-tui
+      - --mesh-id=compose-mesh
+    ports:
+      - "7601:7601"
+    volumes:
+      - beta-data:/data
+  gamma:
+    build: .
+    command:
+      - --name=gamma
+      - --tcp-bind=0.0.0.0:7404
+      - --quic-bind=0.0.0.0:7405
+      - --mgmt-bind=0.0.0.0:7602
+      - --no-tui
+      - --mesh-id=compose-mesh
+    ports:
+      - "7602:7602"
+    volumes:
+      - gamma-data:/data
+
+volumes:
+  alpha-data:
+  beta-data:
+  gamma-data:

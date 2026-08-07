@@ -1,0 +1,48 @@
+[package]
+name = "chimera-nano-kernel"
+description = "Chimera Nano-Kernel — silicon-agnostic no_std execution matrix"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+keywords = ["no_std", "wasm", "embedded", "pqc", "mesh"]
+categories = ["embedded", "no-std", "wasm"]
+
+[features]
+default = ["host", "wasm-tier", "pq", "net"]
+host = ["std", "dep:getrandom"]
+std = ["blake3/std", "serde/std", "postcard/use-std", "wasmi?/std"]
+wasm-tier = ["dep:wasmi"]
+pq = ["dep:ml-kem", "dep:ml-dsa", "dep:rand_core", "dep:sha3", "dep:kem"]
+net = ["dep:smoltcp"]
+uefi = []
+cortex-m = []
+riscv = []
+
+[dependencies]
+blake3 = { version = "1", default-features = false }
+hashbrown = { version = "0.15", default-features = false, features = ["default-hasher"] }
+postcard = { version = "1", default-features = false, features = ["alloc"] }
+serde = { version = "1", default-features = false, features = ["derive", "alloc"] }
+wasmi = { version = "0.40", default-features = false, optional = true }
+smoltcp = { version = "0.12", default-features = false, features = ["alloc", "medium-ethernet", "proto-ipv4", "socket-udp", "socket-tcp", "socket-raw"], optional = true }
+ml-kem = { version = "=0.2.3", default-features = false, optional = true }
+ml-dsa = { version = "0.0.4", default-features = false, features = ["rand_core"], optional = true }
+rand_core = { version = "0.6", default-features = false, features = ["alloc"], optional = true }
+sha3 = { version = "0.10", default-features = false, optional = true }
+kem = { version = "=0.3.0-pre.0", default-features = false, optional = true }
+getrandom = { version = "0.2", optional = true }
+
+[dev-dependencies]
+getrandom = "0.2"
+
+[[example]]
+name = "host_boot"
+required-features = ["host"]
+
+[package.metadata.docs.rs]
+features = ["host", "wasm-tier", "pq", "net"]

@@ -1,0 +1,161 @@
+:root {
+  --void: #0a0a0c;
+  --panel: #12141a;
+  --line: #1e2430;
+  --cyan: #00f0ff;
+  --amber: #ffb800;
+  --fog: #a8b0c0;
+  --text: #e8ecf4;
+  --font: "Segoe UI", "IBM Plex Sans", system-ui, sans-serif;
+  --display: "Segoe UI Semibold", "Trebuchet MS", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #0d2a33 0%, transparent 55%),
+    radial-gradient(900px 500px at 90% 0%, #1a1408 0%, transparent 50%),
+    var(--void);
+  color: var(--text);
+  font-family: var(--font);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(18,20,26,.92), rgba(10,10,12,.6));
+}
+.brand { display: flex; gap: 1rem; align-items: center; }
+.mark {
+  width: 42px; height: 42px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--cyan), #006680 60%, var(--amber));
+  box-shadow: 0 0 24px rgba(0,240,255,.25);
+}
+h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  color: var(--cyan);
+}
+.tag { margin: 0.15rem 0 0; color: var(--fog); font-size: 0.85rem; }
+.status {
+  font-size: 0.85rem;
+  color: var(--amber);
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.75rem;
+  background: var(--panel);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.75rem 1.75rem;
+  border-bottom: 1px solid var(--line);
+}
+.tabs button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--fog);
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  font: inherit;
+}
+.tabs button.active {
+  color: var(--void);
+  background: var(--cyan);
+  border-color: var(--cyan);
+}
+
+main { padding: 1.5rem 1.75rem 3rem; max-width: 960px; }
+.view { display: none; }
+.view.active { display: block; }
+h2 { margin-top: 0; font-family: var(--display); }
+.hint { color: var(--fog); }
+
+.drop {
+  border: 1px dashed var(--cyan);
+  background: rgba(0,240,255,.04);
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  margin: 1rem 0;
+}
+.drop.drag { background: rgba(0,240,255,.12); }
+.list { list-style: none; padding: 0; }
+.list li {
+  display: flex; justify-content: space-between; gap: 1rem;
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(18,20,26,.55);
+  margin-bottom: 0.35rem;
+}
+.list button {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--cyan);
+  cursor: pointer;
+  padding: 0.25rem 0.6rem;
+}
+.row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.75rem 0; }
+.row input {
+  flex: 1;
+  min-width: 160px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 0.5rem 0.65rem;
+}
+.row button, #freightDemo, #freightSearch, #runPkg {
+  background: var(--cyan);
+  color: var(--void);
+  border: none;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+.out {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 0.75rem;
+  overflow: auto;
+  color: var(--fog);
+  font-size: 0.85rem;
+}
+#notes {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 0.75rem;
+  font: inherit;
+  line-height: 1.45;
+}
+.dash-wrap {
+  position: relative;
+  border: 1px solid var(--line);
+  background: #07080c;
+  overflow: hidden;
+}
+#glCanvas { display: block; width: 100%; height: auto; }
+.glass {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.85rem 1rem;
+  min-width: 140px;
+  background: rgba(18, 22, 30, 0.55);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0,0,0,.35);
+}
+.glass span { display: block; color: var(--fog); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.glass strong { color: var(--cyan); font-size: 1.05rem; }
+

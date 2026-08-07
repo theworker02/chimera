@@ -1,0 +1,14 @@
+[book]
+title = "Chimera Documentation"
+description = "ADRs, RFCs, and guides for the Chimera mesh"
+authors = ["Chimera Contributors"]
+language = "en"
+src = "."
+
+[build]
+build-dir = "book"
+create-missing = false
+
+[output.html]
+default-theme = "navy"
+git-repository-url = "https://github.com/YOUR_ORG/chimera"

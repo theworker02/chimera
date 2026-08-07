@@ -1,0 +1,19 @@
+﻿[package]
+name = "chimera-fuser-mount"
+version.workspace = true
+edition.workspace = true
+description = "User-space VFS mount (VirtualMount / FUSE stub) for Chimera"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+
+[features]
+default = []
+fuse = []
+
+[dependencies]
+storage-cas = { version = "0.1.0", path = "../storage-cas", package = "chimera-storage-cas" }
+parking_lot = "0.12"

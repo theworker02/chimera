@@ -1,0 +1,17 @@
+﻿[package]
+name = "chimera-consensus-dag"
+version.workspace = true
+edition.workspace = true
+description = "Raft-backed KV consensus with DAG-ready log layer"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+
+[dependencies]
+anyhow = "1"
+parking_lot = "0.12"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

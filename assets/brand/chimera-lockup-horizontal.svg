@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-label="Chimera horizontal lockup">
+  <title>Chimera</title>
+  <rect width="640" height="160" fill="#0A0A0C"/>
+  <g transform="translate(24,16) scale(1.0)">
+    <g fill="none" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round">
+      <path d="M64 18 L96 36 L96 72 L64 90 L32 72 L32 36 Z"/>
+      <path d="M64 18 L64 90"/>
+      <path d="M32 36 L96 72"/>
+      <path d="M96 36 L32 72"/>
+    </g>
+    <g fill="#00F0FF">
+      <circle cx="64" cy="18" r="5"/>
+      <circle cx="96" cy="36" r="5"/>
+      <circle cx="96" cy="72" r="5"/>
+      <circle cx="64" cy="90" r="5"/>
+      <circle cx="32" cy="72" r="5"/>
+      <circle cx="32" cy="36" r="5"/>
+      <circle cx="64" cy="54" r="7"/>
+    </g>
+    <circle cx="64" cy="54" r="3" fill="#FFB800"/>
+  </g>
+  <text x="170" y="98" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="64" font-weight="700" fill="#00F0FF" letter-spacing="4">CHIMERA</text>
+  <text x="174" y="128" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#FFB800" letter-spacing="3">DECENTRALIZED COMPUTE MESH</text>
+</svg>

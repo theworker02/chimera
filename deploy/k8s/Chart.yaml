@@ -1,0 +1,7 @@
+# Chimera Helm chart (minimal) — operator not included (roadmap).
+apiVersion: v2
+name: chimera
+description: Chimera P2P compute mesh (basic Deployment)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

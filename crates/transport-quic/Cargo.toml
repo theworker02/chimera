@@ -1,0 +1,28 @@
+﻿[package]
+name = "chimera-transport-quic"
+version.workspace = true
+edition.workspace = true
+description = "Multiplexed QUIC/TCP transport and wire protocol for Chimera"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+
+[dependencies]
+anyhow = "1"
+bytes = "1"
+parking_lot = "0.12"
+postcard = { version = "1", features = ["alloc"] }
+quinn = "0.11"
+rcgen = "0.13"
+rustls = { version = "0.23", default-features = false, features = ["ring", "std"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+uuid = { version = "1", features = ["v4", "serde"] }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full", "test-util", "macros"] }
