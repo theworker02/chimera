@@ -15,3 +15,6 @@ credentials
 credentials.bak
 *.pem
 *.key
+
+site/book/
+

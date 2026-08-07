@@ -1,0 +1,55 @@
+name: GitHub Pages
+
+# Single owner of the GitHub Pages site: landing page at / plus mdBook at /book/.
+# release.yml must NOT also deploy Pages (avoids two workflows fighting).
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build site + book
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      - uses: peaceiris/actions-mdbook@v2
+        with:
+          mdbook-version: "0.4.40"
+
+      - name: Assemble site artifact
+        run: |
+          set -euo pipefail
+          mkdir -p site/assets
+          # Brand assets for the landing page (optional if missing).
+          if [[ -f assets/brand/chimera-icon.svg ]]; then
+            cp assets/brand/chimera-icon.svg site/assets/chimera-icon.svg
+          fi
+          # Build into docs/book (book.toml build-dir), then stage under site/book
+          # so the Pages root stays the landing page and docs live at /book/.
+          mdbook build docs/
+          rm -rf site/book
+          mkdir -p site/book
+          cp -a docs/book/. site/book/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

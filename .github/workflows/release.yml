@@ -166,34 +166,7 @@ jobs:
           files: |
             dist/*
           fail_on_unmatched_files: true
+          generate_release_notes: true
 
-  deploy-docs:
-    name: Deploy GitHub Pages Documentation
-    needs: validate-and-test
-    runs-on: ubuntu-latest
-    # Uses the official Pages deployment path exclusively. The earlier draft
-    # mixed these permissions with peaceiris/actions-gh-pages, which instead
-    # pushes to a branch using a token — the two approaches are incompatible.
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    concurrency:
-      group: pages
-      cancel-in-progress: false
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: peaceiris/actions-mdbook@v2
-        with:
-          mdbook-version: "0.4.40"
-      - name: Build documentation
-        run: mdbook build docs/
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/book
-      - id: deployment
-        uses: actions/deploy-pages@v4
+  # GitHub Pages is owned exclusively by .github/workflows/pages.yml
+  # (landing page at / + mdBook at /book/). Do not add a second Pages deploy here.

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chimera — Decentralized Compute Mesh</title>
+  <meta name="description" content="Chimera is a peer-to-peer distributed computation grid in Rust. Install crates from crates.io, read the docs, and join the mesh." />
+  <link rel="icon" href="assets/chimera-icon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --void: #0A0A0C;
+      --cyan: #00F0FF;
+      --amber: #FFB800;
+      --gray: #A0A4AB;
+      --panel: #121218;
+      --line: rgba(0, 240, 255, 0.18);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(1200px 600px at 15% -10%, rgba(0, 240, 255, 0.12), transparent 55%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(255, 184, 0, 0.08), transparent 50%),
+                  var(--void);
+      color: #e8eaed;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      min-height: 100%;
+    }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    header {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .brand img { width: 72px; height: 72px; }
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      letter-spacing: 0.02em;
+      color: #fff;
+    }
+    .tagline {
+      margin: 0.35rem 0 0;
+      color: var(--gray);
+      max-width: 52ch;
+      font-size: 1.05rem;
+    }
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--cyan);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn:hover { background: rgba(0, 240, 255, 0.08); text-decoration: none; }
+    .btn.amber {
+      color: var(--void);
+      background: var(--amber);
+      border-color: var(--amber);
+    }
+    .btn.amber:hover { filter: brightness(1.05); }
+    section { margin: 2.25rem 0; }
+    h2 {
+      margin: 0 0 0.85rem;
+      font-size: 1.25rem;
+      color: var(--cyan);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .install {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      overflow-x: auto;
+    }
+    .install code {
+      font-family: Consolas, "Cascadia Mono", Menlo, monospace;
+      font-size: 0.95rem;
+      color: #d7fbff;
+      white-space: pre;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.75rem;
+    }
+    .crate {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.85rem 0.95rem;
+      transition: border-color 120ms ease, transform 120ms ease;
+    }
+    .crate:hover {
+      border-color: rgba(0, 240, 255, 0.55);
+      transform: translateY(-1px);
+    }
+    .crate strong { color: #fff; font-size: 0.95rem; }
+    .crate span {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--gray);
+      font-size: 0.82rem;
+    }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+      color: var(--gray);
+      font-size: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="assets/chimera-icon.svg" alt="Chimera mark" />
+        <div>
+          <h1>Chimera</h1>
+          <p class="tagline">A decentralized peer-to-peer compute and rendering mesh in Rust — 28 modular crates, zero master server.</p>
+        </div>
+      </div>
+      <div class="cta">
+        <a class="btn amber" href="https://github.com/theworker02/chimera">GitHub</a>
+        <a class="btn" href="./book/">Documentation</a>
+        <a class="btn" href="https://crates.io/crates/chimera-mesh">crates.io · chimera-mesh</a>
+        <a class="btn" href="https://github.com/sponsors/theworker02">Sponsor</a>
+        <a class="btn" href="https://thanks.dev/u/gh/theworker02">thanks.dev</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Install</h2>
+      <div class="install"><code>cargo install chimeractl
+# or: cargo binstall chimeractl
+cargo add chimera-mesh</code></div>
+    </section>
+
+    <section>
+      <h2>Published crates</h2>
+      <div class="grid" id="crates"></div>
+    </section>
+
+    <footer>
+      <span>Chimera · MIT · theworker02</span>
+      <span>
+        <a href="https://github.com/theworker02/chimera/releases">Releases</a>
+        ·
+        <a href="./book/">Book</a>
+        ·
+        <a href="https://crates.io/crates/chimeractl">CLI</a>
+      </span>
+    </footer>
+  </div>
+  <script>
+    const crates = [
+      ["chimera-mesh", "Umbrella mesh node"],
+      ["chimeractl", "Cluster CLI"],
+      ["chimera-boot", "USB / ISO flasher"],
+      ["chimera-nano-kernel", "no_std nano-kernel"],
+      ["chimera-nexus", "Real-time / ECS scheduler"],
+      ["chimera-usb-daemon", "Portable USB worker"],
+      ["chimera-transport-quic", "QUIC transport"],
+      ["chimera-dht-routing", "DHT / service routing"],
+      ["chimera-crypto-quantum", "Post-quantum crypto"],
+      ["chimera-wasm-runtime", "Wasm sandbox"],
+      ["chimera-memory-fabric", "Distributed memory"],
+      ["chimera-storage-cas", "BLAKE3 content store"],
+      ["chimera-fuser-mount", "Virtual mount / FUSE"],
+      ["chimera-consensus-dag", "Raft / consensus"],
+      ["chimera-network-bridge", "Legacy TCP bridge"],
+      ["chimera-agent-swarm", "Local decision agents"],
+      ["chimera-telemetry-otel", "OpenTelemetry metrics"],
+      ["chimera-inference-engine", "Anomaly detection"],
+      ["chimera-compiler-jit", "Retro-scaling / JIT policy"],
+      ["chimera-rbac-auth", "RBAC permissions"],
+      ["chimera-audit-ledger", "Tamper-evident audit log"],
+      ["chimera-compliance-tee", "TEE attestation"],
+      ["chimera-policy-engine", "Declarative policy"]
+    ];
+    const root = document.getElementById("crates");
+    for (const [name, blurb] of crates) {
+      const a = document.createElement("a");
+      a.className = "crate";
+      a.href = `https://crates.io/crates/${name}`;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.innerHTML = `<strong>${name}</strong><span>${blurb}</span>`;
+      root.appendChild(a);
+    }
+  </script>
+</body>
+</html>
