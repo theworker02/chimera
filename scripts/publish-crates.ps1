@@ -84,8 +84,41 @@ foreach ($crate in $Crates) {
         }
         throw "dry-run failed for $crate"
     } else {
-        cargo publish -p $crate --allow-dirty
-        if ($LASTEXITCODE -ne 0) {
+        # crates.io rate-limits *new* crate publishes (a short burst, then roughly
+        # one per 10 minutes). A 429 is expected for a large first release, so wait
+        # out the server-supplied deadline and retry rather than aborting a release
+        # that is already partly done.
+        $attempt = 0
+        while ($true) {
+            $attempt++
+            $oldEap = $ErrorActionPreference
+            $ErrorActionPreference = "Continue"
+            $out = cargo publish -p $crate --allow-dirty 2>&1 | Out-String
+            $code = $LASTEXITCODE
+            $ErrorActionPreference = $oldEap
+            Write-Host ($out.Split("`n") | Select-Object -Last 8 | Out-String)
+
+            if ($code -eq 0) { break }
+
+            # Already published by an earlier interrupted run: treat as done so the
+            # script is safe to re-run after a rate limit or a network failure.
+            if ($out -match 'already exists on crates\.io|already (been )?uploaded') {
+                Write-Host "    already published: $crate@$Version - skipping"
+                break
+            }
+
+            if ($out -match '(?s)429 Too Many Requests.*?try again after ([^\r\n]+?)\s+and see') {
+                $whenRaw = $Matches[1].Trim()
+                try { $when = [datetimeoffset]::Parse($whenRaw).ToLocalTime() }
+                catch { $when = (Get-Date).AddMinutes(11) }
+                # Small buffer past the deadline to avoid a second 429.
+                $wait = [int](($when - (Get-Date)).TotalSeconds) + 20
+                if ($wait -lt 5) { $wait = 5 }
+                Write-Host "    rate limited; waiting $wait s (until ~$when) then retrying $crate (attempt $attempt)"
+                Start-Sleep -Seconds $wait
+                continue
+            }
+
             throw "publish failed for $crate - HALTING (partial release possible on crates.io)"
         }
         Wait-ForIndex $crate $Version

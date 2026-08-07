@@ -120,12 +120,52 @@ for crate in "${CRATES[@]}"; do
     FAILED=1
     break
   else
-    if ! cargo publish -p "$crate" --allow-dirty; then
+    # crates.io rate-limits *new* crate publishes (a short burst, then roughly one
+    # per 10 minutes). For a large first release a 429 is expected, so wait out the
+    # server-supplied deadline and retry instead of aborting a partly-done release.
+    attempt=0
+    while :; do
+      attempt=$((attempt + 1))
+      set +e
+      out="$(cargo publish -p "$crate" --allow-dirty 2>&1)"
+      status=$?
+      set -e
+      echo "$out" | tail -n 8
+
+      if [[ $status -eq 0 ]]; then
+        break
+      fi
+
+      # Already published by an earlier interrupted run: treat as done so the
+      # script is safe to re-run after a rate limit or a network failure.
+      if echo "$out" | grep -Eq 'already exists on crates\.io|already (been )?uploaded'; then
+        echo "    already published: ${crate}@${VERSION} — skipping"
+        break
+      fi
+
+      if echo "$out" | grep -q '429 Too Many Requests'; then
+        when="$(echo "$out" | sed -n 's/.*try again after \(.*\) and see.*/\1/p' | head -n 1)"
+        wait_s=""
+        if [[ -n "$when" ]]; then
+          target="$(date -u -d "$when" +%s 2>/dev/null || true)"
+          if [[ -n "$target" ]]; then
+            wait_s=$(( target - $(date -u +%s) + 20 ))
+          fi
+        fi
+        # Fall back to the documented ~10 minute window if the deadline is unparseable.
+        if [[ -z "$wait_s" || "$wait_s" -lt 5 ]]; then
+          wait_s=660
+        fi
+        echo "    rate limited; waiting ${wait_s}s then retrying ${crate} (attempt ${attempt})"
+        sleep "$wait_s"
+        continue
+      fi
+
       echo "ERROR: publish failed for ${crate} — HALTING (partial release possible)" >&2
       echo "Already attempted crates before this failure may be live on crates.io." >&2
       FAILED=1
-      break
-    fi
+      break 2
+    done
     wait_for_index "$crate" "$VERSION" || { FAILED=1; break; }
   fi
 done
