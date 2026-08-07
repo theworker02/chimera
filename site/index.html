@@ -42,7 +42,15 @@
       align-items: center;
       gap: 1rem;
     }
-    .brand img { width: 72px; height: 72px; }
+    .brand img { width: 72px; height: 72px; display: block; }
+    .banner {
+      width: 100%;
+      max-width: 1040px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      display: block;
+      background: var(--void);
+    }
     h1 {
       margin: 0;
       font-size: clamp(2rem, 4vw, 2.8rem);
@@ -141,12 +149,13 @@
   <div class="wrap">
     <header>
       <div class="brand">
-        <img src="assets/chimera-icon.svg" alt="Chimera mark" />
+        <img src="./assets/chimera-icon.svg" alt="Chimera mark" width="72" height="72" />
         <div>
           <h1>Chimera</h1>
           <p class="tagline">A decentralized peer-to-peer compute and rendering mesh in Rust — 28 modular crates, zero master server.</p>
         </div>
       </div>
+      <img class="banner" src="./assets/chimera-banner.svg" alt="Chimera banner" width="100%" />
       <div class="cta">
         <a class="btn amber" href="https://github.com/theworker02/chimera">GitHub</a>
         <a class="btn" href="./book/">Documentation</a>
@@ -176,6 +185,10 @@ cargo add chimera-mesh</code></div>
         <a href="./book/">Book</a>
         ·
         <a href="https://crates.io/crates/chimeractl">CLI</a>
+        ·
+        <a href="https://github.com/theworker02/chimera/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>
+        ·
+        <a href="https://github.com/theworker02/chimera/blob/main/PRIVACY.md">Privacy</a>
       </span>
     </footer>
   </div>

@@ -36,10 +36,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p site/assets
-          # Brand assets for the landing page (optional if missing).
-          if [[ -f assets/brand/chimera-icon.svg ]]; then
-            cp assets/brand/chimera-icon.svg site/assets/chimera-icon.svg
-          fi
+          # Brand assets for the landing page (keep in sync with assets/brand/).
+          mkdir -p site/assets
+          for f in chimera-icon.svg chimera-mark.svg chimera-banner.svg; do
+            if [[ -f "assets/brand/${f}" ]]; then
+              cp "assets/brand/${f}" "site/assets/${f}"
+            fi
+          done
           # Build into docs/book (book.toml build-dir), then stage under site/book
           # so the Pages root stays the landing page and docs live at /book/.
           mdbook build docs/

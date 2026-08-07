@@ -3,14 +3,18 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/theworker02/chimera/ci.yml?branch=main&label=CI)](https://github.com/theworker02/chimera/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-00F0FF?labelColor=0A0A0C)](./LICENSE)
 [![crates.io](https://img.shields.io/badge/crates.io-chimera--mesh-FFB800?labelColor=0A0A0C)](https://crates.io/crates/chimera-mesh)
-[![coverage](https://img.shields.io/badge/coverage-tracked-00F0FF?labelColor=0A0A0C)](#)
-[![security](https://img.shields.io/badge/security-policy-FFB800?labelColor=0A0A0C)](./docs/guides/contributing.md)
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-00F0FF?labelColor=0A0A0C)](https://theworker02.github.io/chimera/)
+[![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-Contributor%20Covenant-FFB800?labelColor=0A0A0C)](./CODE_OF_CONDUCT.md)
 
 <p align="center">
-  <img src="assets/brand/chimera-banner.svg" alt="Chimera â€” decentralized peer-to-peer compute mesh" width="100%"/>
+  <img src="./assets/brand/chimera-banner.svg" alt="Chimera - decentralized peer-to-peer compute mesh" width="100%"/>
 </p>
 
-**Chimera** turns LAN or secure-mesh machines into a unified virtual compute cluster â€” no master server, no control plane. Peers gossip, steal work, execute Wasm in a sandbox, stream content-addressed data, share memory pages, and negotiate jobs through local agents.
+<p align="center">
+  <img src="./assets/brand/chimera-mark.svg" alt="Chimera mark" width="96"/>
+</p>
+
+**Chimera** turns LAN or secure-mesh machines into a unified virtual compute cluster — no master server, no control plane. Peers gossip, steal work, execute Wasm in a sandbox, stream content-addressed data, share memory pages, and negotiate jobs through local agents.
 
 ## Architecture
 
@@ -369,19 +373,28 @@ cargo run -- --wasm target/wasm32-unknown-unknown/release/chimera_guest.wasm --d
 
 ## Brand
 
-Palette: **void** `#0A0A0C` Â· **electric cyan** `#00F0FF` Â· **warning amber** `#FFB800`  
-Guidelines & SVG lockups: [`brand/brand.md`](./brand/brand.md) Â· [`assets/brand/`](./assets/brand/)
+Palette: **void** `#0A0A0C` · **electric cyan** `#00F0FF` · **warning amber** `#FFB800`  
+Guidelines & SVG lockups: [`brand/brand.md`](./brand/brand.md) · [`assets/brand/`](./assets/brand/)
 
-| | |
+| Asset | Preview |
 |---|---|
-| Mark | ![mark](./assets/brand/chimera-mark.svg) |
-| Icon | [`chimera-icon.svg`](./assets/brand/chimera-icon.svg) |
+| Mark | ![Chimera mark](./assets/brand/chimera-mark.svg) |
+| Icon | ![Chimera icon](./assets/brand/chimera-icon.svg) |
+| Banner | [`chimera-banner.svg`](./assets/brand/chimera-banner.svg) |
+
+## Community & policies
+
+- [Code of Conduct](./CODE_OF_CONDUCT.md) (Contributor Covenant v2.1)
+- [Privacy Policy](./PRIVACY.md)
+- [Contributing](./docs/guides/contributing.md)
+- Site: [theworker02.github.io/chimera](https://theworker02.github.io/chimera/)
 
 ## Documentation
 
-- ADRs: [`docs/adr/`](./docs/adr/) â€” QUIC, Wasmtime, CAS, DSM, agents, CNK, PQ, determinism, gateway, Raft, routing, Omniverse modules
-- RFCs: [`docs/rfc/`](./docs/rfc/) â€” wire protocol, receipts, CNK/PQ frames, Nexus gateway
-- Guides: [local mesh](./docs/guides/local-mesh.md) Â· [Wasm guests](./docs/guides/wasm-guest.md) Â· [CNK targets](./docs/guides/cnk-targets.md) Â· [contributing](./docs/guides/contributing.md)
+- ADRs: [`docs/adr/`](./docs/adr/) — QUIC, Wasmtime, CAS, DSM, agents, CNK, PQ, determinism, gateway, Raft, routing, Omniverse modules
+- RFCs: [`docs/rfc/`](./docs/rfc/) — wire protocol, receipts, CNK/PQ frames, Nexus gateway
+- Guides: [local mesh](./docs/guides/local-mesh.md) · [Wasm guests](./docs/guides/wasm-guest.md) · [CNK targets](./docs/guides/cnk-targets.md) · [contributing](./docs/guides/contributing.md)
+- Book (Pages): [theworker02.github.io/chimera/book](https://theworker02.github.io/chimera/book/)
 
 ## Features (optional)
 
@@ -395,4 +408,4 @@ cargo check --features ml-agent      # ML agent stub
 
 ## License
 
-MIT â€” see [`LICENSE`](./LICENSE).
+MIT — see [`LICENSE`](./LICENSE).

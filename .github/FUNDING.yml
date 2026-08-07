@@ -1,3 +1,4 @@
 # Funding links surfaced via the GitHub Sponsor button.
+# Note: `thanks.dev` is not a built-in FUNDING.yml key — use `custom:`.
 github: [theworker02]
-thanks.dev: ["https://thanks.dev/u/gh/theworker02"]
+custom: ["https://thanks.dev/u/gh/theworker02"]
