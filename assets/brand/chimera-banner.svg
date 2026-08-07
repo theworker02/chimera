@@ -49,8 +49,15 @@
     <path d="M388 64 L412 8 H432 L456 64 H440 L434 48 H410 L404 64 Z M416 36 H428 L422 20 Z"/>
   </g>
   <rect x="340" y="196" width="220" height="4" fill="#FFB800"/>
-  <g fill="#A0A4AB" transform="translate(340,220)">
-    <!-- subtitle as small bars + readable title attribute only; use simple glyphs -->
-    <text x="0" y="18" fill="#A0A4AB" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18">P2P compute mesh  ·  Wasm  ·  CAS  ·  DSM  ·  agents</text>
+  <!-- subtitle as pure shapes (GitHub Camo strips many font/text SVG features) -->
+  <g fill="#A0A4AB" transform="translate(340,224)">
+    <rect x="0" y="0" width="14" height="14" rx="2"/>
+    <rect x="22" y="5" width="70" height="4" rx="2"/>
+    <rect x="100" y="5" width="10" height="4" rx="2" fill="#FFB800"/>
+    <rect x="118" y="5" width="54" height="4" rx="2"/>
+    <rect x="180" y="5" width="10" height="4" rx="2" fill="#FFB800"/>
+    <rect x="198" y="5" width="48" height="4" rx="2"/>
+    <rect x="254" y="5" width="10" height="4" rx="2" fill="#FFB800"/>
+    <rect x="272" y="5" width="70" height="4" rx="2"/>
   </g>
 </svg>
