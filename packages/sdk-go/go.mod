@@ -1,3 +1,3 @@
-module github.com/YOUR_ORG/chimera/sdk-go
+module github.com/theworker02/chimera/sdk-go
 
 go 1.21

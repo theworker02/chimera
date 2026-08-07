@@ -32,13 +32,13 @@ version = "0.1.0"
 edition = "2021"
 license = "MIT"
 authors = ["Chimera Contributors"]
-repository = "https://github.com/YOUR_ORG/chimera"
-homepage = "https://github.com/YOUR_ORG/chimera"
+repository = "https://github.com/theworker02/chimera"
+homepage = "https://github.com/theworker02/chimera"
 rust-version = "1.75"
 
 [package]
 name = "chimera-mesh"
-description = "Chimera mesh node — umbrella composing the Omniverse crate graph"
+description = "Chimera mesh node â€” umbrella composing the Omniverse crate graph"
 version.workspace = true
 edition.workspace = true
 license.workspace = true

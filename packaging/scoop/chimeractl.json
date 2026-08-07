@@ -1,11 +1,11 @@
 {
   "version": "0.1.0",
   "description": "Chimera enterprise mesh control-plane CLI",
-  "homepage": "https://github.com/YOUR_ORG/chimera",
+  "homepage": "https://github.com/theworker02/chimera",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/YOUR_ORG/chimera/releases/download/v0.1.0/chimeractl-windows-amd64.exe",
+      "url": "https://github.com/theworker02/chimera/releases/download/v0.1.0/chimeractl-windows-amd64.exe",
       "hash": "REPLACE_WITH_RELEASE_SHA256",
       "bin": [
         [
@@ -19,7 +19,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/YOUR_ORG/chimera/releases/download/v$version/chimeractl-windows-amd64.exe"
+        "url": "https://github.com/theworker02/chimera/releases/download/v$version/chimeractl-windows-amd64.exe"
       }
     }
   }

@@ -1,16 +1,16 @@
 # Chimera
 
-[![CI](https://img.shields.io/github/actions/workflow/status/YOUR_ORG/chimera/ci.yml?branch=main&label=CI)](https://github.com/YOUR_ORG/chimera/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/theworker02/chimera/ci.yml?branch=main&label=CI)](https://github.com/theworker02/chimera/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-00F0FF?labelColor=0A0A0C)](./LICENSE)
 [![crates.io](https://img.shields.io/badge/crates.io-chimera--mesh-FFB800?labelColor=0A0A0C)](https://crates.io/crates/chimera-mesh)
 [![coverage](https://img.shields.io/badge/coverage-tracked-00F0FF?labelColor=0A0A0C)](#)
 [![security](https://img.shields.io/badge/security-policy-FFB800?labelColor=0A0A0C)](./docs/guides/contributing.md)
 
 <p align="center">
-  <img src="assets/brand/chimera-banner.svg" alt="Chimera — decentralized peer-to-peer compute mesh" width="100%"/>
+  <img src="assets/brand/chimera-banner.svg" alt="Chimera â€” decentralized peer-to-peer compute mesh" width="100%"/>
 </p>
 
-**Chimera** turns LAN or secure-mesh machines into a unified virtual compute cluster — no master server, no control plane. Peers gossip, steal work, execute Wasm in a sandbox, stream content-addressed data, share memory pages, and negotiate jobs through local agents.
+**Chimera** turns LAN or secure-mesh machines into a unified virtual compute cluster â€” no master server, no control plane. Peers gossip, steal work, execute Wasm in a sandbox, stream content-addressed data, share memory pages, and negotiate jobs through local agents.
 
 ## Architecture
 
@@ -35,40 +35,40 @@ flowchart LR
 ```
 
 ```
-                    ┌─────────────────────────────────────┐
-                    │           Intent / Agent            │
-                    └──────────────┬──────────────────────┘
-                                   │ plan
-          ┌────────────────────────┼────────────────────────┐
-          ▼                        ▼                        ▼
-   ┌─────────────┐         ┌─────────────┐          ┌─────────────┐
-   │  Scheduler  │◄─steal─►│  Wasmtime   │─migrate─►│ ChimeraMEM  │
-   │ work-steal  │         │  sandbox    │          │ soft DSM    │
-   └──────┬──────┘         └──────┬──────┘          └──────┬──────┘
-          │ prefetch              │ I/O                    │ pages
-          ▼                       ▼                        ▼
-   ┌─────────────────────────────────────────────────────────────┐
-   │ ChimeraFS (BLAKE3 CAS · gossip DHT · VirtualMount / FUSE*)  │
-   └─────────────────────────────────────────────────────────────┘
+                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                    â”‚           Intent / Agent            â”‚
+                    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                   â”‚ plan
+          â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+          â–¼                        â–¼                        â–¼
+   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”          â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+   â”‚  Scheduler  â”‚â—„â”€stealâ”€â–ºâ”‚  Wasmtime   â”‚â”€migrateâ”€â–ºâ”‚ ChimeraMEM  â”‚
+   â”‚ work-steal  â”‚         â”‚  sandbox    â”‚          â”‚ soft DSM    â”‚
+   â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜         â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜          â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜
+          â”‚ prefetch              â”‚ I/O                    â”‚ pages
+          â–¼                       â–¼                        â–¼
+   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+   â”‚ ChimeraFS (BLAKE3 CAS Â· gossip DHT Â· VirtualMount / FUSE*)  â”‚
+   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
    * FUSE optional (Unix feature); Windows uses VirtualMount VFS
 ```
 
 | Phase | Capability |
 |---|---|
 | 1 | Gossip discovery, QUIC/TCP, work-stealing, Wasmtime, mmap pipeline, heartbeats/checkpoints, Ratatui TUI |
-| 2 | ChimeraFS — CAS, DHT, prefetch, VirtualMount |
-| 3 | ChimeraMEM — DSM, Wasm migration, CRDTs, tiering |
+| 2 | ChimeraFS â€” CAS, DHT, prefetch, VirtualMount |
+| 3 | ChimeraMEM â€” DSM, Wasm migration, CRDTs, tiering |
 | 4 | Agents, intents, self-healing, ed25519 receipts |
 | 5 | Brand system, ADRs/RFCs, docs, CI |
-| 6 | **Chimera Nano-Kernel** — `no_std` core, wasmi tier, smoltcp framing, ML-KEM/ML-DSA handshake, deterministic replay |
-| 7 | Enterprise mgmt — REST portal, RBAC, audit, join tokens, chimeractl, SDKs |
-| 8 | **Chimera Nexus** — frame-budget RT scheduler, distributed ECS, C ABI / WIT |
-| 9 | **Nexus Core** — Wasm function gateway, DHT registry routing, Raft KV, autoscaler, `chimeractl up` |
-| 10 | **WorldOS** — MeshShell SPA, Freight packages, credit ledger, TCP bridge, CRDT collab |
-| 11 | **Sovereign** — chimera-usb, WebGL dash, TEE/mTLS, retro-scaling, continuity |
-| 12 | **Omniverse** — 28 modular crates/packages (`crates/` + `packages/`) |
-| 14 | **Boot-Sovereign** — safety-gated USB flash/recovery (`chimera-boot`) |
-| 15 | **Distribution** — crates.io naming, release pipeline, mdBook, binstall/brew |
+| 6 | **Chimera Nano-Kernel** â€” `no_std` core, wasmi tier, smoltcp framing, ML-KEM/ML-DSA handshake, deterministic replay |
+| 7 | Enterprise mgmt â€” REST portal, RBAC, audit, join tokens, chimeractl, SDKs |
+| 8 | **Chimera Nexus** â€” frame-budget RT scheduler, distributed ECS, C ABI / WIT |
+| 9 | **Nexus Core** â€” Wasm function gateway, DHT registry routing, Raft KV, autoscaler, `chimeractl up` |
+| 10 | **WorldOS** â€” MeshShell SPA, Freight packages, credit ledger, TCP bridge, CRDT collab |
+| 11 | **Sovereign** â€” chimera-usb, WebGL dash, TEE/mTLS, retro-scaling, continuity |
+| 12 | **Omniverse** â€” 28 modular crates/packages (`crates/` + `packages/`) |
+| 14 | **Boot-Sovereign** â€” safety-gated USB flash/recovery (`chimera-boot`) |
+| 15 | **Distribution** â€” crates.io naming, release pipeline, mdBook, binstall/brew |
 
 ## Install
 
@@ -83,7 +83,7 @@ cargo binstall chimeractl
 cargo binstall chimera-boot
 
 # Homebrew (tap lives in a separate homebrew-chimera repo; formula template in packaging/)
-# brew tap YOUR_ORG/chimera && brew install chimeractl
+# brew tap theworker02/chimera && brew install chimeractl
 
 # Prebuilt: download chimeractl-<platform> / chimera-boot-<platform> from GitHub Releases
 # See RELEASING.md for the exact artifact matrix and checksums.
@@ -95,11 +95,11 @@ Umbrella library package: **`chimera-mesh`** (the name `chimera` is taken on cra
 chimera = { version = "0.1", package = "chimera-mesh" }
 ```
 
-Docs: [ADR-0024](./docs/adr/0024-distribution-publishing.md) · [RELEASING.md](./RELEASING.md)
+Docs: [ADR-0024](./docs/adr/0024-distribution-publishing.md) Â· [RELEASING.md](./RELEASING.md)
 
-## Phase 14 — Chimera Boot-Sovereign
+## Phase 14 â€” Chimera Boot-Sovereign
 
-> **⚠ DATA LOSS WARNING:** `chimera-boot` can wipe disks. Defaults keep **dry-run ON**. Physical writes require `--yes-i-understand-this-destroys-data` **and** `--no-dry-run`, and **hard-refuse** non-removable/system disks. Automated tests use **file-backed images only**. **Real-hardware flashing is UNTESTED.**
+> **âš  DATA LOSS WARNING:** `chimera-boot` can wipe disks. Defaults keep **dry-run ON**. Physical writes require `--yes-i-understand-this-destroys-data` **and** `--no-dry-run`, and **hard-refuse** non-removable/system disks. Automated tests use **file-backed images only**. **Real-hardware flashing is UNTESTED.**
 
 Crate: [`crates/usb-flasher/`](./crates/usb-flasher/) (package `chimera-boot`). ADR: [ADR-0023](./docs/adr/0023-boot-sovereign-safety.md).
 
@@ -107,7 +107,7 @@ Crate: [`crates/usb-flasher/`](./crates/usb-flasher/) (package `chimera-boot`). 
 |---|---|
 | `FileImageTarget` + GPT/MBR/FAT32 round-trips | **working** (file images) |
 | ISO / payload stream + BLAKE3 verify | **working** (file images) |
-| `PhysicalDiskTarget` (Windows/Linux) | **implemented, gated** — **UNTESTED on hardware** |
+| `PhysicalDiskTarget` (Windows/Linux) | **implemented, gated** â€” **UNTESTED on hardware** |
 | NTFS format | **roadmap / OS-delegated** (honest error) |
 | EFI/MBR bootloader blobs | **user-supplied paths only** (none bundled) |
 | `chimeractl usb list` | **working** (read-only; safe to run) |
@@ -117,13 +117,13 @@ Crate: [`crates/usb-flasher/`](./crates/usb-flasher/) (package `chimera-boot`). 
 ```bash
 cargo test -p chimera-boot
 cargo run -p cli-tool -- usb list
-# Lab flash (SAFE — file image):
+# Lab flash (SAFE â€” file image):
 cargo run -p cli-tool -- usb flash --image --target ./data/lab-usb.img --payload ./payload.bin --no-dry-run
 ```
 
-## Phase 12 — Chimera Omniverse (28 modules)
+## Phase 12 â€” Chimera Omniverse (28 modules)
 
-Phases 1–11 logic is split into **exactly 28** independently usable modules. Rust libraries/binaries live under [`crates/`](./crates/); SDKs, GitOps, UI, and audio live under [`packages/`](./packages/). The root `chimera` package composes them into the full mesh node. Rationale and acyclic layering: [ADR-0022](./docs/adr/0022-omniverse-modules.md).
+Phases 1â€“11 logic is split into **exactly 28** independently usable modules. Rust libraries/binaries live under [`crates/`](./crates/); SDKs, GitOps, UI, and audio live under [`packages/`](./packages/). The root `chimera` package composes them into the full mesh node. Rationale and acyclic layering: [ADR-0022](./docs/adr/0022-omniverse-modules.md).
 
 ```mermaid
 flowchart TB
@@ -218,7 +218,7 @@ cargo build --release --workspace
 cargo check -p chimera-nano-kernel --no-default-features --target thumbv7em-none-eabihf
 ```
 
-## Phase 6 — Chimera Nano-Kernel (CNK)
+## Phase 6 â€” Chimera Nano-Kernel (CNK)
 
 Silicon-agnostic execution matrix in [`crates/core-nano/`](./crates/core-nano/):
 
@@ -236,11 +236,11 @@ cargo check -p chimera-nano-kernel --no-default-features --target thumbv7em-none
 | wasmi interpreter tier | **Runnable** |
 | ML-KEM-768 + ML-DSA-65 hybrid envelope + puzzles | **Tested on host** |
 | smoltcp simulated device framing | **Tested** (QUIC-over-smoltcp **not** implemented) |
-| UEFI / Cortex-M / RISC-V boots | **Scaffolding only** — see [docs/guides/cnk-targets.md](./docs/guides/cnk-targets.md) |
+| UEFI / Cortex-M / RISC-V boots | **Scaffolding only** â€” see [docs/guides/cnk-targets.md](./docs/guides/cnk-targets.md) |
 
-Docs: [ADR-0006](./docs/adr/0006-chimera-nano-kernel.md) · [ADR-0007](./docs/adr/0007-pq-hybrid-handshake.md) · [ADR-0008](./docs/adr/0008-deterministic-replay.md) · [RFC-0003](./docs/rfc/0003-cnk-pq-frames.md)
+Docs: [ADR-0006](./docs/adr/0006-chimera-nano-kernel.md) Â· [ADR-0007](./docs/adr/0007-pq-hybrid-handshake.md) Â· [ADR-0008](./docs/adr/0008-deterministic-replay.md) Â· [RFC-0003](./docs/rfc/0003-cnk-pq-frames.md)
 
-## Phase 7 — Enterprise management
+## Phase 7 â€” Enterprise management
 
 Management API (default `http://127.0.0.1:7600`): health, Prometheus `/metrics`, intents, assets, join tokens, audit. Auth demo: `Authorization: Bearer admin:ops`.
 
@@ -249,26 +249,26 @@ cargo run --bin chimera -- --name alpha --no-tui --mgmt-bind 127.0.0.1:7600
 cargo run -p cli-tool -- status
 ```
 
-Docs: [ADR-0009](./docs/adr/0009-observability.md) · [ADR-0010](./docs/adr/0010-mgmt-rbac-sdks.md) · [ADR-0011](./docs/adr/0011-deployment.md) · [RFC-0004](./docs/rfc/0004-protocol-versioning.md)
+Docs: [ADR-0009](./docs/adr/0009-observability.md) Â· [ADR-0010](./docs/adr/0010-mgmt-rbac-sdks.md) Â· [ADR-0011](./docs/adr/0011-deployment.md) Â· [RFC-0004](./docs/rfc/0004-protocol-versioning.md)
 
-## Phase 8 — Chimera Nexus (real-time interop)
+## Phase 8 â€” Chimera Nexus (real-time interop)
 
-Host crate [`crates/scheduler-rt/`](./crates/scheduler-rt/) (`chimera-nexus`): sub-16ms frame scheduler, ECS on TxLog, client prediction, C ABI + WIT. Engine embeds (Godot/Unreal) are **scaffolding** — unit-tested host APIs only.
+Host crate [`crates/scheduler-rt/`](./crates/scheduler-rt/) (`chimera-nexus`): sub-16ms frame scheduler, ECS on TxLog, client prediction, C ABI + WIT. Engine embeds (Godot/Unreal) are **scaffolding** â€” unit-tested host APIs only.
 
 ```bash
 cargo test -p chimera-nexus
 ```
 
-## Phase 9 — Nexus Core (distributed application mesh)
+## Phase 9 â€” Nexus Core (distributed application mesh)
 
 Wasm function gateway, latency-aware registry routing, compact Raft KV, autoscaler + traffic shedder, and `chimeractl up`.
 
 | Surface | Status |
 |---|---|
 | Wasm deploy / invoke (Wasmtime, fuel + memory caps) | **Working** |
-| Service registry + failover routing | **Working** (userspace — **not** IP anycast) |
+| Service registry + failover routing | **Working** (userspace â€” **not** IP anycast) |
 | Raft KV (+ host imports `chimera.kv_*`) | **Working** (in-process / lab replication) |
-| Autoscaler + priority shedder (RT priority ≥ 200) | **Working** (unit-tested) |
+| Autoscaler + priority shedder (RT priority â‰¥ 200) | **Working** (unit-tested) |
 | `chimeractl up` / `deploy` / `invoke` / `logs` / `scale` | **Working** on Windows |
 | Container / Dockerfile ingest | **Roadmap** |
 | SQL-over-KV | **Roadmap** |
@@ -284,16 +284,16 @@ cargo build --bin chimera --release
 # 2) One-click local fabric (foreground; Ctrl-C tears down)
 ./target/release/chimeractl.exe up --nodes 1 --chimera-bin ./target/release/chimera.exe
 
-# 3–4) Deploy demo add1 Wasm and invoke (input 0x29 → 42)
+# 3â€“4) Deploy demo add1 Wasm and invoke (input 0x29 â†’ 42)
 ./target/release/chimeractl.exe deploy demo --name add1
 ./target/release/chimeractl.exe invoke --function add1 --input-hex 29
 ```
 
-Docs: [ADR-0012](./docs/adr/0012-function-gateway.md) · [ADR-0013](./docs/adr/0013-raft-kv.md) · [ADR-0014](./docs/adr/0014-service-routing.md) · [RFC-0005](./docs/rfc/0005-nexus-gateway.md)
+Docs: [ADR-0012](./docs/adr/0012-function-gateway.md) Â· [ADR-0013](./docs/adr/0013-raft-kv.md) Â· [ADR-0014](./docs/adr/0014-service-routing.md) Â· [RFC-0005](./docs/rfc/0005-nexus-gateway.md)
 
-## Phase 10 — WorldOS (decentralized hypergrid environment)
+## Phase 10 â€” WorldOS (decentralized hypergrid environment)
 
-Grounded P2P OS surfaces on the existing mesh — not planet-scale marketing claims.
+Grounded P2P OS surfaces on the existing mesh â€” not planet-scale marketing claims.
 
 | Surface | Status |
 |---|---|
@@ -316,9 +316,9 @@ cargo run -p cli-tool -- freight install add1 --version 0.1.0
 cargo run -p cli-tool -- freight run add1 --input-hex 29
 ```
 
-Docs: [ADR-0015](./docs/adr/0015-freight.md) · [ADR-0016](./docs/adr/0016-credit-economy.md) · [ADR-0017](./docs/adr/0017-mesh-bridging.md) · [RFC-0006](./docs/rfc/0006-worldos.md)
+Docs: [ADR-0015](./docs/adr/0015-freight.md) Â· [ADR-0016](./docs/adr/0016-credit-economy.md) Â· [ADR-0017](./docs/adr/0017-mesh-bridging.md) Â· [RFC-0006](./docs/rfc/0006-worldos.md)
 
-## Phase 11 — Chimera Sovereign
+## Phase 11 â€” Chimera Sovereign
 
 Enterprise/security surfaces grounded in testable software. Hardware TEE / Vulkan / driverless USB are labeled honestly.
 
@@ -332,24 +332,24 @@ Enterprise/security surfaces grounded in testable software. Hardware TEE / Vulka
 | mTLS-over-QUIC lab helpers + tests | **Working** |
 | Default LAN QUIC (no client cert) | **Working** (compat) |
 | Retro-scaling policy (JIT vs wasmi) | **Working** |
-| Continuity / partition recovery tests | **Working** (data loss prevention via replay — not wire ZPL) |
+| Continuity / partition recovery tests | **Working** (data loss prevention via replay â€” not wire ZPL) |
 | Driverless USB autostart | **Roadmap** |
 
 ```bash
 cargo run -p usb-daemon -- --benchmark-startup --root ./data/usb-lab
-# example measured on this Windows host (debug/release vary): ~100–150ms portable init — always re-measure
+# example measured on this Windows host (debug/release vary): ~100â€“150ms portable init â€” always re-measure
 cargo run --bin chimera -- --name sovereign --no-tui
-# open http://127.0.0.1:7600/meshshell → Sovereign Dash
+# open http://127.0.0.1:7600/meshshell â†’ Sovereign Dash
 ```
 
-Docs: [ADR-0018](./docs/adr/0018-tee-attestation.md) · [ADR-0019](./docs/adr/0019-mtls-quic.md) · [ADR-0020](./docs/adr/0020-retro-scaling.md) · [ADR-0021](./docs/adr/0021-continuity.md) · [RFC-0007](./docs/rfc/0007-sovereign.md) · [ADR-0022](./docs/adr/0022-omniverse-modules.md)
+Docs: [ADR-0018](./docs/adr/0018-tee-attestation.md) Â· [ADR-0019](./docs/adr/0019-mtls-quic.md) Â· [ADR-0020](./docs/adr/0020-retro-scaling.md) Â· [ADR-0021](./docs/adr/0021-continuity.md) Â· [RFC-0007](./docs/rfc/0007-sovereign.md) Â· [ADR-0022](./docs/adr/0022-omniverse-modules.md)
 
 
 ## Quickstart
 
 ```bash
 # Install Rust: https://rustup.rs
-git clone https://github.com/YOUR_ORG/chimera.git
+git clone https://github.com/theworker02/chimera.git
 cd chimera
 
 # One node with demo slices + TUI
@@ -369,8 +369,8 @@ cargo run -- --wasm target/wasm32-unknown-unknown/release/chimera_guest.wasm --d
 
 ## Brand
 
-Palette: **void** `#0A0A0C` · **electric cyan** `#00F0FF` · **warning amber** `#FFB800`  
-Guidelines & SVG lockups: [`brand/brand.md`](./brand/brand.md) · [`assets/brand/`](./assets/brand/)
+Palette: **void** `#0A0A0C` Â· **electric cyan** `#00F0FF` Â· **warning amber** `#FFB800`  
+Guidelines & SVG lockups: [`brand/brand.md`](./brand/brand.md) Â· [`assets/brand/`](./assets/brand/)
 
 | | |
 |---|---|
@@ -379,9 +379,9 @@ Guidelines & SVG lockups: [`brand/brand.md`](./brand/brand.md) · [`assets/brand
 
 ## Documentation
 
-- ADRs: [`docs/adr/`](./docs/adr/) — QUIC, Wasmtime, CAS, DSM, agents, CNK, PQ, determinism, gateway, Raft, routing, Omniverse modules
-- RFCs: [`docs/rfc/`](./docs/rfc/) — wire protocol, receipts, CNK/PQ frames, Nexus gateway
-- Guides: [local mesh](./docs/guides/local-mesh.md) · [Wasm guests](./docs/guides/wasm-guest.md) · [CNK targets](./docs/guides/cnk-targets.md) · [contributing](./docs/guides/contributing.md)
+- ADRs: [`docs/adr/`](./docs/adr/) â€” QUIC, Wasmtime, CAS, DSM, agents, CNK, PQ, determinism, gateway, Raft, routing, Omniverse modules
+- RFCs: [`docs/rfc/`](./docs/rfc/) â€” wire protocol, receipts, CNK/PQ frames, Nexus gateway
+- Guides: [local mesh](./docs/guides/local-mesh.md) Â· [Wasm guests](./docs/guides/wasm-guest.md) Â· [CNK targets](./docs/guides/cnk-targets.md) Â· [contributing](./docs/guides/contributing.md)
 
 ## Features (optional)
 
@@ -395,4 +395,4 @@ cargo check --features ml-agent      # ML agent stub
 
 ## License
 
-MIT — see [`LICENSE`](./LICENSE).
+MIT â€” see [`LICENSE`](./LICENSE).

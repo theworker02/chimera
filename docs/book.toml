@@ -11,4 +11,4 @@ create-missing = false
 
 [output.html]
 default-theme = "navy"
-git-repository-url = "https://github.com/YOUR_ORG/chimera"
+git-repository-url = "https://github.com/theworker02/chimera"
