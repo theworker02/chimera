@@ -45,3 +45,26 @@ Dependent crates cannot publish until the index serves each new version. The pub
 
 ## Dry-run rehearsal without publishing
 `workflow_dispatch` with `dry_run: true` exercises the pipeline without crates.io publish or release upload.
+
+## README crates.io links (idempotent sync)
+
+After a full publish, `README.md` should list every package under a **Crates.io packages** section bounded by HTML comment markers:
+
+```markdown
+<!-- CRATES-IO-START -->
+## Crates.io packages
+...
+<!-- CRATES-IO-END -->
+```
+
+Regenerate locally (refuses to rewrite unless all 23 crates are LIVE at the workspace version, unless you pass `-Force` / `--force`):
+
+```bash
+./scripts/sync-crates-readme.sh
+# Windows:
+#   .\scripts\sync-crates-readme.ps1
+# Status only:
+#   ./scripts/sync-crates-readme.sh --check-only
+```
+
+Durable automation: `.github/workflows/sync-crates-readme.yml` runs hourly, on `workflow_dispatch`, and after a successful release pipeline. When every crate in `scripts/publish-crates.*` exists on crates.io at the workspace version, it regenerates the marked section and opens a PR (`chore/sync-crates-readme`).

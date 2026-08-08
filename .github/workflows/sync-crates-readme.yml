@@ -1,0 +1,71 @@
+name: Sync crates.io README links
+
+# When every publishable crate exists at the workspace version on crates.io,
+# regenerate the README "Crates.io packages" section (HTML comment markers) and
+# open a PR (or push to main if a PR is unnecessary / already current).
+on:
+  schedule:
+    # Hourly — useful during multi-crate first publishes / rate-limit waits.
+    - cron: "17 * * * *"
+  workflow_dispatch:
+  # After a tag release workflow finishes publishing (best-effort; schedule covers gaps).
+  workflow_run:
+    workflows: ["Chimera Global Release Pipeline"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-readme:
+    name: Sync README crates.io section
+    runs-on: ubuntu-latest
+    # Skip failed release runs; schedule + dispatch always run.
+    if: >
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check crates.io + regenerate README
+        id: sync
+        shell: bash
+        run: |
+          set -euo pipefail
+          chmod +x scripts/sync-crates-readme.sh || true
+          if ! bash scripts/sync-crates-readme.sh --check-only; then
+            echo "all_live=false" >> "$GITHUB_OUTPUT"
+            echo "Not all crates are LIVE yet — nothing to commit."
+            exit 0
+          fi
+          echo "all_live=true" >> "$GITHUB_OUTPUT"
+          bash scripts/sync-crates-readme.sh --require-all
+          if git diff --quiet -- README.md; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "README already lists all LIVE crates."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open PR with README update
+        if: steps.sync.outputs.all_live == 'true' && steps.sync.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Document all crates.io package links after publish"
+          title: "docs: sync crates.io package links in README"
+          body: |
+            Automated update from `.github/workflows/sync-crates-readme.yml`.
+
+            Regenerates the README section between `<!-- CRATES-IO-START -->` and
+            `<!-- CRATES-IO-END -->` once every crate in `scripts/publish-crates.*`
+            is LIVE at the workspace version on crates.io.
+
+            Local equivalent: `./scripts/sync-crates-readme.sh` /
+            `.\scripts\sync-crates-readme.ps1`
+          branch: chore/sync-crates-readme
+          delete-branch: true
+          labels: documentation
