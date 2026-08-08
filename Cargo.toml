@@ -54,7 +54,8 @@ exclude = [
   "docs/book/**",
   "target/**",
   "packages/**",
-  "meshshell/**",
+  # meshshell/web/* is embedded via include_str! in src/mgmt/meshshell.rs —
+  # must ship in the crates.io tarball or `cargo publish` package verify fails.
   "brand/**",
   "assets/**",
   "packaging/**",
