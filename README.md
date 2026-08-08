@@ -1,14 +1,16 @@
-# Chimera
-
-[![CI](https://img.shields.io/github/actions/workflow/status/theworker02/chimera/ci.yml?branch=main&label=CI)](https://github.com/theworker02/chimera/actions)
-[![License: MIT](https://img.shields.io/badge/license-MIT-00F0FF?labelColor=0A0A0C)](./LICENSE)
-[![crates.io](https://img.shields.io/badge/crates.io-chimera--mesh-FFB800?labelColor=0A0A0C)](https://crates.io/crates/chimera-mesh)
-[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-00F0FF?labelColor=0A0A0C)](https://theworker02.github.io/chimera/)
-[![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-Contributor%20Covenant-FFB800?labelColor=0A0A0C)](./CODE_OF_CONDUCT.md)
+<p align="center">
+  <img src="./assets/brand/chimera-banner.svg" alt="Chimera — decentralized peer-to-peer compute mesh" width="100%"/>
+</p>
 
 <p align="center">
-  <img src="./assets/brand/chimera-banner.svg" alt="Chimera - decentralized peer-to-peer compute mesh" width="100%"/>
+  <a href="https://github.com/theworker02/chimera/actions"><img src="https://img.shields.io/github/actions/workflow/status/theworker02/chimera/ci.yml?branch=main&label=CI" alt="CI"/></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-00F0FF?labelColor=0A0A0C" alt="License: MIT"/></a>
+  <a href="https://crates.io/crates/chimera-mesh"><img src="https://img.shields.io/badge/crates.io-chimera--mesh-FFB800?labelColor=0A0A0C" alt="crates.io"/></a>
+  <a href="https://theworker02.github.io/chimera/"><img src="https://img.shields.io/badge/docs-GitHub%20Pages-00F0FF?labelColor=0A0A0C" alt="Docs"/></a>
+  <a href="./CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/code%20of%20conduct-Contributor%20Covenant-FFB800?labelColor=0A0A0C" alt="Code of Conduct"/></a>
 </p>
+
+# Chimera
 
 **Chimera** turns LAN or secure-mesh machines into a unified virtual compute cluster — no master server, no control plane. Peers gossip, steal work, execute Wasm in a sandbox, stream content-addressed data, share memory pages, and negotiate jobs through local agents.
 

@@ -31,25 +31,26 @@
     </g>
     <circle cx="64" cy="54" r="3.2" fill="#FFB800"/>
   </g>
-  <!-- wordmark as geometric block letters (no font dependency for GitHub Camo) -->
+  <!-- wordmark: geometric block letters spelling CHIMERA (path-only for GitHub Camo) -->
   <g fill="#00F0FF" transform="translate(340,108)">
     <!-- C -->
-    <path d="M8 8 H48 V20 H24 V52 H48 V64 H8 Z"/>
+    <path d="M8 8 H52 V22 H26 V50 H52 V64 H8 Z"/>
     <!-- H -->
-    <path d="M60 8 H76 V28 H100 V8 H116 V64 H100 V40 H76 V64 H60 Z"/>
+    <path d="M64 8 H80 V28 H104 V8 H120 V64 H104 V40 H80 V64 H64 Z"/>
     <!-- I -->
-    <path d="M128 8 H144 V64 H128 Z"/>
+    <path d="M132 8 H148 V64 H132 Z"/>
     <!-- M -->
-    <path d="M156 64 V8 H176 L196 36 L216 8 H236 V64 H220 V28 L196 52 L172 28 V64 Z"/>
+    <path d="M160 64 V8 H180 L200 34 L220 8 H240 V64 H224 V30 L200 52 L176 30 V64 Z"/>
     <!-- E -->
-    <path d="M248 8 H304 V20 H264 V28 H296 V40 H264 V52 H304 V64 H248 Z"/>
-    <!-- R -->
-    <path d="M316 8 H360 L376 24 V32 L360 40 H332 V64 H316 Z M332 20 V28 H352 V20 Z M336 40 L376 64 H354 L336 48 Z"/>
+    <path d="M252 8 H308 V22 H268 V28 H300 V40 H268 V50 H308 V64 H252 Z"/>
+    <!-- R: stem + open bowl ring + bold diagonal leg (reads as R, not P) -->
+    <path d="M320 8 H338 V64 H320 Z"/>
+    <path d="M338 8 H374 C396 8 396 8 396 26 C396 44 396 44 374 44 H338 V32 H370 C380 32 380 32 380 26 C380 20 380 20 370 20 H338 Z"/>
+    <path d="M348 44 L404 64 H374 L348 52 Z"/>
     <!-- A -->
-    <path d="M388 64 L412 8 H432 L456 64 H440 L434 48 H410 L404 64 Z M416 36 H428 L422 20 Z"/>
+    <path d="M412 64 L436 8 H456 L480 64 H462 L456 48 H432 L426 64 Z M438 36 H450 L444 20 Z"/>
   </g>
   <rect x="340" y="196" width="220" height="4" fill="#FFB800"/>
-  <!-- subtitle as pure shapes (GitHub Camo strips many font/text SVG features) -->
   <g fill="#A0A4AB" transform="translate(340,224)">
     <rect x="0" y="0" width="14" height="14" rx="2"/>
     <rect x="22" y="5" width="70" height="4" rx="2"/>
