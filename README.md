@@ -10,10 +10,6 @@
   <img src="./assets/brand/chimera-banner.svg" alt="Chimera - decentralized peer-to-peer compute mesh" width="100%"/>
 </p>
 
-<p align="center">
-  <img src="./assets/brand/chimera-mark.svg" alt="Chimera mark" width="96"/>
-</p>
-
 **Chimera** turns LAN or secure-mesh machines into a unified virtual compute cluster — no master server, no control plane. Peers gossip, steal work, execute Wasm in a sandbox, stream content-addressed data, share memory pages, and negotiate jobs through local agents.
 
 ## Architecture
