@@ -2,7 +2,10 @@ name: Sync crates.io README links
 
 # When every publishable crate exists at the workspace version on crates.io,
 # regenerate the README "Crates.io packages" section (HTML comment markers) and
-# open a PR (or push to main if a PR is unnecessary / already current).
+# commit directly to main when the section changed.
+#
+# Commits to main (instead of opening a PR) so the job does not depend on the
+# repo setting "Allow GitHub Actions to create and approve pull requests".
 on:
   schedule:
     # Hourly — useful during multi-crate first publishes / rate-limit waits.
@@ -15,7 +18,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   sync-readme:
@@ -35,7 +37,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          chmod +x scripts/sync-crates-readme.sh || true
           if ! bash scripts/sync-crates-readme.sh --check-only; then
             echo "all_live=false" >> "$GITHUB_OUTPUT"
             echo "Not all crates are LIVE yet — nothing to commit."
@@ -50,22 +51,13 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Open PR with README update
+      - name: Commit README update to main
         if: steps.sync.outputs.all_live == 'true' && steps.sync.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Document all crates.io package links after publish"
-          title: "docs: sync crates.io package links in README"
-          body: |
-            Automated update from `.github/workflows/sync-crates-readme.yml`.
-
-            Regenerates the README section between `<!-- CRATES-IO-START -->` and
-            `<!-- CRATES-IO-END -->` once every crate in `scripts/publish-crates.*`
-            is LIVE at the workspace version on crates.io.
-
-            Local equivalent: `./scripts/sync-crates-readme.sh` /
-            `.\scripts\sync-crates-readme.ps1`
-          branch: chore/sync-crates-readme
-          delete-branch: true
-          labels: documentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Document all crates.io package links after publish"
+          git push origin HEAD:main
