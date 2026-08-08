@@ -32,20 +32,26 @@ while ($true) {
         & $Sync -RequireAll
         if ($LASTEXITCODE -ne 0) { throw "sync-crates-readme.ps1 failed" }
 
-        git add README.md
+        # git writes CRLF/LF notices to stderr; with $ErrorActionPreference=Stop that
+        # becomes a terminating NativeCommandError even when exit code is 0.
+        $oldEap = $ErrorActionPreference
+        $ErrorActionPreference = "Continue"
+        git add README.md 2>&1 | Out-Host
+        if ($LASTEXITCODE -ne 0) { $ErrorActionPreference = $oldEap; throw "git add failed" }
 
         $status = git status --porcelain README.md
         if (-not $status) {
             Write-Host "README already committed with full crates list."
         } else {
-            git commit -m "Document all crates.io package links after v0.1.0 publish"
-            if ($LASTEXITCODE -ne 0) { throw "git commit failed" }
+            git commit -m "Document all crates.io package links after v0.1.0 publish" 2>&1 | Out-Host
+            if ($LASTEXITCODE -ne 0) { $ErrorActionPreference = $oldEap; throw "git commit failed" }
         }
 
         if ($Push) {
-            git push origin HEAD:main
-            if ($LASTEXITCODE -ne 0) { throw "git push failed" }
+            git push origin HEAD:main 2>&1 | Out-Host
+            if ($LASTEXITCODE -ne 0) { $ErrorActionPreference = $oldEap; throw "git push failed" }
         }
+        $ErrorActionPreference = $oldEap
 
         $sha = git rev-parse HEAD
         Write-Host "DONE sha=$sha"
