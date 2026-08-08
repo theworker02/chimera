@@ -169,8 +169,9 @@ if ($text.Contains($StartMarker) -and $text.Contains($EndMarker)) {
     $updated = [regex]::Replace($text, $pattern, { param($m) $section.TrimEnd() }, 1)
 } else {
     # Insert after the Install section (before Phase 14), or append if missing.
-    $anchor = "## Phase 14 — Chimera Boot-Sovereign"
-    if ($text.Contains($anchor)) {
+    # Match Phase 14 heading without relying on Unicode dash encoding.
+    if ($text -match '(?m)^## Phase 14 .+ Chimera Boot-Sovereign\s*$') {
+        $anchor = $Matches[0]
         $updated = $text.Replace($anchor, ($section + "`n" + $anchor))
     } else {
         $updated = $text.TrimEnd() + "`n`n" + $section
@@ -183,5 +184,7 @@ if ($updated -eq $text) {
 }
 
 Set-Content -Path $readmeFull -Value $updated -NoNewline
-Write-Host "Updated $readmeFull crates.io section ($($live.Count)/$($Crates.Count) LIVE)."
+$liveCount = $live.Count
+$totalCount = $Crates.Count
+Write-Host "Updated $readmeFull crates.io section ($liveCount/$totalCount LIVE)."
 exit 0

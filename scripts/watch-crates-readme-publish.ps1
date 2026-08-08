@@ -32,8 +32,6 @@ while ($true) {
         & $Sync -RequireAll
         if ($LASTEXITCODE -ne 0) { throw "sync-crates-readme.ps1 failed" }
 
-        git add README.md scripts/sync-crates-readme.ps1 scripts/sync-crates-readme.sh .github/workflows/sync-crates-readme.yml RELEASING.md 2>$null
-        # Always stage README; automation files may already be committed separately.
         git add README.md
 
         $status = git status --porcelain README.md
