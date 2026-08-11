@@ -24,11 +24,12 @@ members = [
   "crates/compliance-tee",
   "crates/policy-engine",
   "crates/cli-tool",
+  "crates/chimera-sql",
   "crates/usb-flasher",
 ]
 
 [workspace.package]
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 license = "MIT"
 authors = ["Chimera Contributors"]
@@ -84,6 +85,7 @@ bridge-bluetooth = ["network-bridge/bridge-bluetooth"]
 cnk = ["dep:chimera-nano-kernel"]
 nexus = ["dep:chimera-nexus"]
 mgmt = ["dep:axum", "dep:tower", "dep:tower-http"]
+sql = ["dep:chimera-sql"]
 otel = ["telemetry-otel/otel"]
 
 [dependencies]
@@ -119,27 +121,28 @@ uuid = { version = "1", features = ["v4", "serde"] }
 wasmtime = "29"
 
 # Internal crates (dep keys keep short names; published as chimera-*)
-agent-swarm = { version = "0.1.0", path = "crates/agent-swarm", package = "chimera-agent-swarm" }
-audit-ledger = { version = "0.1.0", path = "crates/audit-ledger", package = "chimera-audit-ledger" }
-compiler-jit = { version = "0.1.0", path = "crates/compiler-jit", package = "chimera-compiler-jit" }
-compliance-tee = { version = "0.1.0", path = "crates/compliance-tee", package = "chimera-compliance-tee" }
-consensus-dag = { version = "0.1.0", path = "crates/consensus-dag", package = "chimera-consensus-dag" }
-crypto-quantum = { version = "0.1.0", path = "crates/crypto-quantum", package = "chimera-crypto-quantum" }
-dht-routing = { version = "0.1.0", path = "crates/dht-routing", package = "chimera-dht-routing" }
-fuser-mount = { version = "0.1.0", path = "crates/fuser-mount", package = "chimera-fuser-mount" }
-inference-engine = { version = "0.1.0", path = "crates/inference-engine", package = "chimera-inference-engine" }
-memory-fabric = { version = "0.1.0", path = "crates/memory-fabric", package = "chimera-memory-fabric" }
-network-bridge = { version = "0.1.0", path = "crates/network-bridge", package = "chimera-network-bridge" }
-policy-engine = { version = "0.1.0", path = "crates/policy-engine", package = "chimera-policy-engine" }
-rbac-auth = { version = "0.1.0", path = "crates/rbac-auth", package = "chimera-rbac-auth" }
-storage-cas = { version = "0.1.0", path = "crates/storage-cas", package = "chimera-storage-cas" }
-telemetry-otel = { version = "0.1.0", path = "crates/telemetry-otel", package = "chimera-telemetry-otel" }
-transport-quic = { version = "0.1.0", path = "crates/transport-quic", package = "chimera-transport-quic" }
-wasm-runtime = { version = "0.1.0", path = "crates/wasm-runtime", package = "chimera-wasm-runtime" }
+agent-swarm = { version = "0.2.0", path = "crates/agent-swarm", package = "chimera-agent-swarm" }
+audit-ledger = { version = "0.2.0", path = "crates/audit-ledger", package = "chimera-audit-ledger" }
+compiler-jit = { version = "0.2.0", path = "crates/compiler-jit", package = "chimera-compiler-jit" }
+compliance-tee = { version = "0.2.0", path = "crates/compliance-tee", package = "chimera-compliance-tee" }
+consensus-dag = { version = "0.2.0", path = "crates/consensus-dag", package = "chimera-consensus-dag" }
+crypto-quantum = { version = "0.2.0", path = "crates/crypto-quantum", package = "chimera-crypto-quantum" }
+dht-routing = { version = "0.2.0", path = "crates/dht-routing", package = "chimera-dht-routing" }
+fuser-mount = { version = "0.2.0", path = "crates/fuser-mount", package = "chimera-fuser-mount" }
+inference-engine = { version = "0.2.0", path = "crates/inference-engine", package = "chimera-inference-engine" }
+memory-fabric = { version = "0.2.0", path = "crates/memory-fabric", package = "chimera-memory-fabric" }
+network-bridge = { version = "0.2.0", path = "crates/network-bridge", package = "chimera-network-bridge" }
+policy-engine = { version = "0.2.0", path = "crates/policy-engine", package = "chimera-policy-engine" }
+rbac-auth = { version = "0.2.0", path = "crates/rbac-auth", package = "chimera-rbac-auth" }
+storage-cas = { version = "0.2.0", path = "crates/storage-cas", package = "chimera-storage-cas" }
+telemetry-otel = { version = "0.2.0", path = "crates/telemetry-otel", package = "chimera-telemetry-otel" }
+transport-quic = { version = "0.2.0", path = "crates/transport-quic", package = "chimera-transport-quic" }
+wasm-runtime = { version = "0.2.0", path = "crates/wasm-runtime", package = "chimera-wasm-runtime" }
 
-chimera-nano-kernel = { version = "0.1.0", path = "crates/core-nano", optional = true }
-chimera-nexus = { version = "0.1.0", path = "crates/scheduler-rt", optional = true }
-chimera-boot = { version = "0.1.0", path = "crates/usb-flasher" }
+chimera-nano-kernel = { version = "0.2.0", path = "crates/core-nano", optional = true }
+chimera-nexus = { version = "0.2.0", path = "crates/scheduler-rt", optional = true }
+chimera-boot = { version = "0.2.0", path = "crates/usb-flasher" }
+chimera-sql = { version = "0.2.0", path = "crates/chimera-sql", optional = true }
 
 axum = { version = "0.8", optional = true, features = ["json", "ws"] }
 tower = { version = "0.5", optional = true }

@@ -16,8 +16,8 @@ path = "src/main.rs"
 
 [dependencies]
 anyhow = "1"
-chimera = { version = "0.1.0", path = "../..", package = "chimera-mesh", default-features = false, features = ["cnk"] }
+chimera = { version = "0.2.0", path = "../..", package = "chimera-mesh", default-features = false, features = ["cnk"] }
 clap = { version = "4", features = ["derive"] }
 rustls = { version = "0.23", default-features = false, features = ["ring", "std"] }
-compiler-jit = { version = "0.1.0", path = "../compiler-jit", package = "chimera-compiler-jit" }
-compliance-tee = { version = "0.1.0", path = "../compliance-tee", package = "chimera-compliance-tee" }
+compiler-jit = { version = "0.2.0", path = "../compiler-jit", package = "chimera-compiler-jit" }
+compliance-tee = { version = "0.2.0", path = "../compliance-tee", package = "chimera-compliance-tee" }

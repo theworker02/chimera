@@ -20,6 +20,6 @@ blake3 = "1"
 ed25519-dalek = { version = "2", features = ["rand_core", "serde"] }
 parking_lot = "0.12"
 rand = "0.8"
-transport-quic = { version = "0.1.0", path = "../transport-quic", package = "chimera-transport-quic" }
+transport-quic = { version = "0.2.0", path = "../transport-quic", package = "chimera-transport-quic" }
 wasmtime = "29"
 uuid = { version = "1", features = ["v4"] }

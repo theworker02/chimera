@@ -50,6 +50,10 @@ pub mod observability;
 pub mod pipeline;
 pub mod runtime;
 pub mod scheduler;
+#[cfg(feature = "sql")]
+pub mod sql {
+    pub use chimera_sql::*;
+}
 pub mod tui;
 pub mod versioning;
 

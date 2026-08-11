@@ -18,7 +18,7 @@ crate-type = ["cdylib", "staticlib", "rlib"]
 
 [dependencies]
 blake3 = "1"
-chimera-nano-kernel = { version = "0.1.0", path = "../core-nano", default-features = false, features = ["host"] }
+chimera-nano-kernel = { version = "0.2.0", path = "../core-nano", default-features = false, features = ["host"] }
 parking_lot = "0.12"
 serde = { version = "1", features = ["derive"] }
 postcard = { version = "1", features = ["alloc"] }

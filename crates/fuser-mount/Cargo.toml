@@ -15,5 +15,5 @@ default = []
 fuse = []
 
 [dependencies]
-storage-cas = { version = "0.1.0", path = "../storage-cas", package = "chimera-storage-cas" }
+storage-cas = { version = "0.2.0", path = "../storage-cas", package = "chimera-storage-cas" }
 parking_lot = "0.12"

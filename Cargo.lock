@@ -412,7 +412,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-agent-swarm"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "chimera-transport-quic",
  "serde",
@@ -421,7 +421,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-audit-ledger"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "blake3",
@@ -435,7 +435,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-boot"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "blake3",
@@ -450,14 +450,14 @@ dependencies = [
 
 [[package]]
 name = "chimera-compiler-jit"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "serde",
 ]
 
 [[package]]
 name = "chimera-compliance-tee"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "blake3",
@@ -468,7 +468,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-consensus-dag"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "parking_lot",
@@ -478,14 +478,14 @@ dependencies = [
 
 [[package]]
 name = "chimera-crypto-quantum"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "chimera-nano-kernel",
 ]
 
 [[package]]
 name = "chimera-dht-routing"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "blake3",
  "chimera-transport-quic",
@@ -496,7 +496,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-fuser-mount"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "chimera-storage-cas",
  "parking_lot",
@@ -504,18 +504,18 @@ dependencies = [
 
 [[package]]
 name = "chimera-guest"
-version = "0.1.0"
+version = "0.2.0"
 
 [[package]]
 name = "chimera-inference-engine"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "serde",
 ]
 
 [[package]]
 name = "chimera-memory-fabric"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "chimera-transport-quic",
  "parking_lot",
@@ -525,7 +525,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-mesh"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "axum 0.8.9",
@@ -547,6 +547,7 @@ dependencies = [
  "chimera-nexus",
  "chimera-policy-engine",
  "chimera-rbac-auth",
+ "chimera-sql",
  "chimera-storage-cas",
  "chimera-telemetry-otel",
  "chimera-transport-quic",
@@ -588,7 +589,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-nano-kernel"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "blake3",
  "getrandom 0.2.17",
@@ -606,7 +607,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-network-bridge"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "parking_lot",
@@ -616,7 +617,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-nexus"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "blake3",
  "chimera-nano-kernel",
@@ -627,7 +628,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-policy-engine"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "serde",
@@ -636,14 +637,25 @@ dependencies = [
 
 [[package]]
 name = "chimera-rbac-auth"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "serde",
 ]
 
 [[package]]
+name = "chimera-sql"
+version = "0.2.0"
+dependencies = [
+ "anyhow",
+ "chimera-consensus-dag",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.19",
+]
+
+[[package]]
 name = "chimera-storage-cas"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "blake3",
@@ -656,7 +668,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-telemetry-otel"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "chimera-transport-quic",
@@ -671,7 +683,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-transport-quic"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "bytes",
@@ -689,7 +701,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-usb-daemon"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "chimera-compiler-jit",
@@ -701,7 +713,7 @@ dependencies = [
 
 [[package]]
 name = "chimera-wasm-runtime"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "blake3",
@@ -715,7 +727,7 @@ dependencies = [
 
 [[package]]
 name = "chimeractl"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "chimera-boot",
