@@ -108,8 +108,8 @@ for crate in "${CRATES[@]}"; do
     if [[ $status -eq 0 ]]; then
       continue
     fi
-    if echo "$out" | grep -q 'no matching package named'; then
-      echo "    note: dependency not yet on crates.io (first-release). Falling back to cargo check -p ${crate}"
+    if echo "$out" | grep -Eq 'no matching package named|failed to select a version for the requirement|candidate versions found which didn.t match'; then
+      echo "    note: dependency not yet on crates.io at ${VERSION} (first-release). Falling back to cargo check -p ${crate}"
       if ! cargo check -p "$crate"; then
         echo "ERROR: check failed for ${crate}" >&2
         FAILED=1
