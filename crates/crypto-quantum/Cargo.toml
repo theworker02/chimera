@@ -11,4 +11,4 @@ rust-version.workspace = true
 readme = "README.md"
 
 [dependencies]
-chimera-nano-kernel = { version = "0.1.0", path = "../core-nano", default-features = false, features = ["host", "pq"] }
+chimera-nano-kernel = { version = "0.2.0", path = "../core-nano", default-features = false, features = ["host", "pq"] }

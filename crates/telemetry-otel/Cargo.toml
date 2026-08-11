@@ -17,7 +17,7 @@ otel = ["dep:opentelemetry", "dep:opentelemetry_sdk", "dep:opentelemetry-otlp", 
 [dependencies]
 anyhow = "1"
 parking_lot = "0.12"
-transport-quic = { version = "0.1.0", path = "../transport-quic", package = "chimera-transport-quic" }
+transport-quic = { version = "0.2.0", path = "../transport-quic", package = "chimera-transport-quic" }
 sysinfo = "0.33"
 tracing = "0.1"
 opentelemetry = { version = "0.27", optional = true }

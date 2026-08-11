@@ -42,6 +42,7 @@ CRATES=(
   chimera-inference-engine
   chimera-policy-engine
   chimera-consensus-dag
+  chimera-sql
   chimera-audit-ledger
   chimera-storage-cas
   chimera-network-bridge
