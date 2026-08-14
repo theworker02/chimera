@@ -249,7 +249,7 @@ flowchart TB
 | 19 | `compliance-tee` | TEE attestation (simulated + TDX/TZ stubs) | **working** / stubs |
 | 20 | `policy-engine` | Declarative YAML/JSON resource limits | **working** |
 | 21 | `sdk-python` | Python management API client | **working** |
-| 22 | `sdk-ts` | TypeScript management API client | **working** |
+| 22 | `sdk-ts` | TypeScript management API client (full `/v1` coverage) | **working** |
 | 23 | `sdk-go` | Minimal Go management API client | **working** |
 | 24 | `cli-tool` | `chimeractl` CLI | **working** |
 | 25 | `gitops-operator` | K8s/Compose deploy scaffolding | **scaffolding** |
