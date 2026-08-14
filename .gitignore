@@ -17,4 +17,5 @@ credentials.bak
 *.key
 
 site/book/
+node_modules/
 

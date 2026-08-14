@@ -1,8 +1,14 @@
 {
-  "name": "@chimera/sdk",
+  "name": "@theworker02/chimera-sdk",
   "version": "0.1.0",
-  "description": "TypeScript client for the Chimera management API",
+  "description": "Typed control client for the Chimera management REST API",
   "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theworker02/chimera.git",
+    "directory": "packages/sdk-ts"
+  },
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
