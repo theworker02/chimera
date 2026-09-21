@@ -1,21 +1,78 @@
-MIT License
+﻿chimera Source-Available Evaluation License
+Copyright (c) 2026 theworker02 (https://github.com/theworker02)
 
-Copyright (c) 2026 theworker02
+IMPORTANT: This is NOT an open-source license. The Software is proprietary
+source-available software. Viewing the source does not grant production,
+redistribution, SaaS, or other commercial rights.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Definitions
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+   "Software" means chimera and all associated source code, binaries,
+   documentation, and other materials in this repository, excluding
+   third-party components that carry their own licenses.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+   "Licensor" means theworker02 (GitHub: https://github.com/theworker02).
+
+   "Evaluation Use" means non-production use solely to review, evaluate,
+   test, or demonstrate the Software for your own internal assessment,
+   including local clones and personal experimentation that is not part of
+   a live product, paid service, or customer-facing system.
+
+2. Evaluation grant
+
+   Subject to these terms, Licensor grants you a limited, revocable,
+   non-exclusive, non-transferable, non-sublicensable license to view,
+   clone, and use the Software for Evaluation Use only.
+
+3. Restrictions (commercial license required)
+
+   Except as expressly permitted above, or under a separate written
+   commercial license from Licensor, you may NOT:
+
+   (a) use the Software in production, staging that serves real users or
+       customers, CI/CD gates for shipping products, or any live workload;
+   (b) redistribute, sell, lease, sublicense, or otherwise transfer the
+       Software or derivative works to third parties;
+   (c) offer the Software (or substantially similar functionality) as a
+       hosted, managed, SaaS, or multi-tenant service;
+   (d) use the Software for any commercial purpose, including internal
+       business use beyond Evaluation Use;
+   (e) remove or alter copyright, license, or attribution notices.
+
+4. Commercial licenses
+
+   Production use, redistribution, SaaS, and other commercial use require
+   a paid commercial license. See COMMERCIAL.md or contact Licensor via
+   GitHub @theworker02. This document is not legal advice and does not
+   create a purchase obligation; commercial terms are set in a separate
+   written agreement.
+
+5. Contributions
+
+   By submitting a contribution (pull request, patch, or similar) you
+   assign to Licensor, or irrevocably license to Licensor under terms
+   sufficient for Licensor to relicense and commercialize, all rights in
+   that contribution. Do not contribute code you cannot license this way.
+
+6. Ownership
+
+   The Software is and remains the exclusive property of Licensor.
+   No title or ownership is transferred. Third-party dependencies remain
+   under their respective licenses.
+
+7. No warranty
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+   IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+   CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+
+8. Termination
+
+   This license terminates automatically if you breach these terms.
+   Upon termination you must cease all use and destroy copies obtained
+   under this license, except as required by a separate commercial
+   agreement or applicable law.
+
+For commercial licensing, see COMMERCIAL.md.
