@@ -1,78 +1,105 @@
-﻿chimera Source-Available Evaluation License
-Copyright (c) 2026 theworker02 (https://github.com/theworker02)
+# Proprietary License - Use Only After Sale or Acquisition
 
-IMPORTANT: This is NOT an open-source license. The Software is proprietary
-source-available software. Viewing the source does not grant production,
-redistribution, SaaS, or other commercial rights.
+**Copyright (c) 2026 theworker02 (https://github.com/theworker02)**
 
-1. Definitions
+All rights reserved.
 
-   "Software" means chimera and all associated source code, binaries,
-   documentation, and other materials in this repository, excluding
-   third-party components that carry their own licenses.
+**This is not an open-source license.** This repository and all related materials are proprietary intellectual property. **No right to use, copy, modify, distribute, sublicense, or deploy in production is granted** until a **written commercial license** OR a **completed acquisition / asset transfer** is executed with the Rightsholder.
 
-   "Licensor" means theworker02 (GitHub: https://github.com/theworker02).
+---
 
-   "Evaluation Use" means non-production use solely to review, evaluate,
-   test, or demonstrate the Software for your own internal assessment,
-   including local clones and personal experimentation that is not part of
-   a live product, paid service, or customer-facing system.
+## 1. Definitions
 
-2. Evaluation grant
+- **Materials** means all source code, object code, designs, architectures, documentation, diagrams, trademarks, trade secrets, know-how, configurations, demos, SBOM/acquisition packages, and other content in or associated with this repository.
+- **Product** means chimera and any implementations thereof described in these Materials.
+- **Rightsholder** means theworker02 (GitHub: https://github.com/theworker02), or any successor assignee named in a written acquisition or commercial license agreement.
+- **You** means any person or entity that accesses, receives, or possesses the Materials.
 
-   Subject to these terms, Licensor grants you a limited, revocable,
-   non-exclusive, non-transferable, non-sublicensable license to view,
-   clone, and use the Software for Evaluation Use only.
+## 2. Default grant - none
 
-3. Restrictions (commercial license required)
+**No license is granted by default.**
 
-   Except as expressly permitted above, or under a separate written
-   commercial license from Licensor, you may NOT:
+Except as expressly permitted in Section 3, or as superseded by a written agreement under Section 6, You may **not**:
 
-   (a) use the Software in production, staging that serves real users or
-       customers, CI/CD gates for shipping products, or any live workload;
-   (b) redistribute, sell, lease, sublicense, or otherwise transfer the
-       Software or derivative works to third parties;
-   (c) offer the Software (or substantially similar functionality) as a
-       hosted, managed, SaaS, or multi-tenant service;
-   (d) use the Software for any commercial purpose, including internal
-       business use beyond Evaluation Use;
-   (e) remove or alter copyright, license, or attribution notices.
+1. Use the Materials or Product for any purpose, including development, testing, staging, evaluation beyond an explicit written grant, or production;
+2. Copy, reproduce, or create derivative works of the Materials;
+3. Modify, adapt, translate, or transform the Materials;
+4. Distribute, publish, sublicense, lease, lend, or otherwise transfer the Materials to any third party;
+5. Deploy the Product (or any substantial portion) in any production, multi-tenant, customer-facing, or revenue-generating environment;
+6. Host, operate, or offer the Product (or a competing service substantially based on the Materials) as a public or multi-tenant SaaS, managed service, or marketplace offering;
+7. Reverse engineer, decompile, disassemble, or otherwise attempt to derive source, algorithms, protocols, or trade secrets from the Materials for the purpose of building a competing product or service;
+8. Remove, obscure, or alter any copyright, trademark, confidentiality, or proprietary notices;
+9. Use the Rightsholder's names, logos, or product marks in a way that implies endorsement, partnership, or affiliation without prior written consent.
 
-4. Commercial licenses
+**Cloning, forking, starring, or downloading this repository does not create any license.**
 
-   Production use, redistribution, SaaS, and other commercial use require
-   a paid commercial license. See COMMERCIAL.md or contact Licensor via
-   GitHub @theworker02. This document is not legal advice and does not
-   create a purchase obligation; commercial terms are set in a separate
-   written agreement.
+## 3. Narrow exceptions (evaluation and public marketing only)
 
-5. Contributions
+### 3.1 Evaluation under NDA
 
-   By submitting a contribution (pull request, patch, or similar) you
-   assign to Licensor, or irrevocably license to Licensor under terms
-   sufficient for Licensor to relicense and commercialize, all rights in
-   that contribution. Do not contribute code you cannot license this way.
+If the Rightsholder grants You **written** permission to evaluate Materials under an NDA or similar instrument:
 
-6. Ownership
+- You may access and review Materials solely for internal evaluation of a potential purchase, investment, partnership, or commercial license;
+- You must keep Materials confidential per the NDA;
+- Evaluation rights do **not** include production use, redistribution, sublicensing, or preparation of competing products;
+- Evaluation rights end automatically when the NDA expires or is terminated, or when the Rightsholder revokes access in writing.
 
-   The Software is and remains the exclusive property of Licensor.
-   No title or ownership is transferred. Third-party dependencies remain
-   under their respective licenses.
+**Absent a written NDA/evaluation grant, all rights are reserved.**
 
-7. No warranty
+### 3.2 Public marketing pages
 
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
-   IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-   CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+If any public marketing, landing, or status pages are published by the Rightsholder, You may view those pages for ordinary informational purposes. That does **not** grant rights to use code, designs, or other proprietary Materials.
 
-8. Termination
+## 4. Competing use
 
-   This license terminates automatically if you breach these terms.
-   Upon termination you must cease all use and destroy copies obtained
-   under this license, except as required by a separate commercial
-   agreement or applicable law.
+Without limiting Section 2, You shall not use Materials to design, train, implement, or accelerate a competing product in the same problem domain, or publicly host a substitute derived from these Materials.
 
-For commercial licensing, see COMMERCIAL.md.
+## 5. Ownership
+
+Title, ownership, and all intellectual property rights in the Materials and Product remain exclusively with the Rightsholder until transferred in a definitive agreement. Access under this License is not a sale of IP. No implied licenses are granted by estoppel, course of dealing, or otherwise.
+
+## 6. After sale or commercial license (supersession)
+
+Upon **completed acquisition** (closing under a definitive purchase / asset-transfer agreement) or an **executed written commercial license** between You and the Rightsholder:
+
+- The rights transferred or granted in that agreement **supersede** this LICENSE to the extent of any conflict;
+- Surviving confidentiality, disclaimer, and limitation provisions of this LICENSE continue unless the superseding agreement expressly provides otherwise;
+- Until closing or license execution, this LICENSE remains in full force.
+
+**After sale, the Product remains proprietary unless the definitive agreement expressly converts it to an open-source license.** Public GitHub visibility after closing does not revive MIT/Apache/BSD or any other open-source grant.
+
+Deal agreements control after execution. Drafts in diligence folders are **not** executed instruments.
+
+## 7. Contributions
+
+Public contributions are not solicited. Any unsolicited submission does not create a license for You to use the Product. By submitting a contribution you assign to Rightsholder, or irrevocably license to Rightsholder under terms sufficient for Rightsholder to relicense and commercialize, all rights in that contribution.
+
+## 8. Termination
+
+Any unauthorized use terminates any implied or purported permission immediately. Upon termination or demand, You must cease use and destroy or return Materials in Your possession, except copies required to be retained by law (which remain confidential).
+
+## 9. Disclaimer of warranty
+
+THE MATERIALS AND PRODUCT ARE PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+
+## 10. Limitation of liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE RIGHTSHOLDER SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, GOODWILL, OR BUSINESS OPPORTUNITY, ARISING OUT OF OR RELATED TO THE MATERIALS OR THIS LICENSE.
+
+## 11. Governing law
+
+Governing law and venue shall be as specified in a written NDA, commercial license, or acquisition agreement between the parties. If none exists, the Rightsholder may designate governing law in a future written instrument.
+
+## 12. Not legal advice
+
+This LICENSE is a protective proprietary notice for a pre-sale / pre-acquisition repository. It is not legal advice. Consult qualified counsel for real transactions.
+
+## 13. Contact
+
+- GitHub: [@theworker02](https://github.com/theworker02)
+- Funding: [thanks.dev/u/gh/theworker02](https://thanks.dev/u/gh/theworker02)
+- Process: See `ACQUISITION.md`
+
+---
+
+*Version: 1.1.0 - Last updated: 2026-09-22 - Post-sale supersession clarified*
