@@ -1,4 +1,4 @@
-﻿[workspace]
+[workspace]
 resolver = "2"
 members = [
   ".",
@@ -32,6 +32,7 @@ members = [
 version = "0.2.0"
 edition = "2021"
 license = "LicenseRef-Proprietary"
+license-file = "LICENSE"
 authors = ["Chimera Contributors"]
 repository = "https://github.com/theworker02/chimera"
 homepage = "https://github.com/theworker02/chimera"
