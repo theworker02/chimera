@@ -1,4 +1,4 @@
-﻿# compliance-tee
+# compliance-tee
 
 TEE attestation (simulated + hardware stubs).
 

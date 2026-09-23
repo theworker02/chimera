@@ -1,4 +1,4 @@
-﻿[package]
+[package]
 name = "chimera-crypto-quantum"
 version.workspace = true
 edition.workspace = true

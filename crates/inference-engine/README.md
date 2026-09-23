@@ -1,4 +1,4 @@
-﻿# inference-engine
+# inference-engine
 
 Lightweight statistical anomaly detector.
 

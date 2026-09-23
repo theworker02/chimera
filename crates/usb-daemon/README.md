@@ -1,4 +1,4 @@
-﻿# usb-daemon
+# usb-daemon
 
 Portable chimera-usb host device node.
 

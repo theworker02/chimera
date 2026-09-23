@@ -1,4 +1,4 @@
-﻿# `@theworker02/chimera-sdk`
+# `@theworker02/chimera-sdk`
 
 Typed control client for Chimera's management REST API (`http://127.0.0.1:7600` by default).
 

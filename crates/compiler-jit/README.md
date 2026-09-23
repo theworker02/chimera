@@ -1,4 +1,4 @@
-﻿# compiler-jit
+# compiler-jit
 
 Adaptive Wasm tier selection / retro-scaling policy.
 

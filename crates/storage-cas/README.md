@@ -1,4 +1,4 @@
-﻿# storage-cas
+# storage-cas
 
 BLAKE3 content-addressed storage.
 

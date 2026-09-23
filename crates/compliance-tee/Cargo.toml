@@ -1,4 +1,4 @@
-﻿[package]
+[package]
 name = "chimera-compliance-tee"
 version.workspace = true
 edition.workspace = true
