@@ -1,4 +1,4 @@
-﻿# policy-engine
+# policy-engine
 
 Declarative JSON/YAML resource policy evaluator.
 

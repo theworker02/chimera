@@ -1,4 +1,4 @@
-﻿# audit-ledger
+# audit-ledger
 
 Hash-chained signed audit event log.
 

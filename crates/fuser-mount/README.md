@@ -1,4 +1,4 @@
-﻿# fuser-mount
+# fuser-mount
 
 User-space VFS bridge (FUSE / VirtualMount).
 

@@ -1,4 +1,4 @@
-﻿# wasm-runtime
+# wasm-runtime
 
 Sandboxed Wasmtime/wasmi execution.
 

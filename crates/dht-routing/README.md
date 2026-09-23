@@ -1,4 +1,4 @@
-﻿# dht-routing
+# dht-routing
 
 S/Kademlia DHT and service registry routing.
 

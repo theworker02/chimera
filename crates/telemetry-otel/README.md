@@ -1,4 +1,4 @@
-﻿# telemetry-otel
+# telemetry-otel
 
 OpenTelemetry tracing and metrics helpers.
 

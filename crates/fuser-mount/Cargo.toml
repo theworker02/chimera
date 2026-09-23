@@ -1,4 +1,4 @@
-﻿[package]
+[package]
 name = "chimera-fuser-mount"
 version.workspace = true
 edition.workspace = true

@@ -1,4 +1,4 @@
-﻿# cli-tool
+# cli-tool
 
 chimeractl — management / freight / gateway CLI.
 

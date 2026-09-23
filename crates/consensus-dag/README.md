@@ -1,4 +1,4 @@
-﻿# consensus-dag
+# consensus-dag
 
 Raft KV + DAG-ready consensus surfaces.
 

@@ -1,4 +1,4 @@
-﻿# memory-fabric
+# memory-fabric
 
 Distributed shared memory fabric.
 

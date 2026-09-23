@@ -1,4 +1,4 @@
-﻿[package]
+[package]
 name = "chimera-wasm-runtime"
 version.workspace = true
 edition.workspace = true

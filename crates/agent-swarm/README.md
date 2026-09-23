@@ -1,4 +1,4 @@
-﻿# agent-swarm
+# agent-swarm
 
 Decentralized local decision agents.
 

@@ -1,4 +1,4 @@
-﻿# rbac-auth
+# rbac-auth
 
 Role-based access control.
 

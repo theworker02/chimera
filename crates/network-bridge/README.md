@@ -1,4 +1,4 @@
-﻿# network-bridge
+# network-bridge
 
 Legacy TCP bridge + BT/serial stubs.
 

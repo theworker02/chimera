@@ -1,4 +1,4 @@
-﻿# crypto-quantum
+# crypto-quantum
 
 ML-DSA + ML-KEM post-quantum crypto facade.
 

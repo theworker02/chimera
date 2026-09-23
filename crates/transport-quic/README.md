@@ -1,4 +1,4 @@
-﻿# transport-quic
+# transport-quic
 
 QUIC transport, wire protocol, mTLS helpers.
 

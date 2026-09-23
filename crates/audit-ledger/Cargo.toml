@@ -1,4 +1,4 @@
-﻿[package]
+[package]
 name = "chimera-audit-ledger"
 version.workspace = true
 edition.workspace = true
