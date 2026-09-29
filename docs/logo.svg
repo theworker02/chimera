@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="chimera mark">
+  <rect width="128" height="128" rx="18" fill="#0B1F33"/>
+  <rect x="24" y="78" width="20" height="22" rx="3" fill="none" stroke="#ae391d" stroke-width="4"/>
+  <rect x="50" y="58" width="24" height="42" rx="3" fill="none" stroke="#ae391d" stroke-width="4"/>
+  <rect x="80" y="32" width="28" height="68" rx="3" fill="#ae391d"/>
+  <path d="M28 70l8-10 8 6" fill="none" stroke="#ae391d" stroke-width="4" stroke-linecap="round"/>
+</svg>
